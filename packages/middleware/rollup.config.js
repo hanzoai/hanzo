@@ -15,10 +15,10 @@ export default [
     },
     plugins: [
       resolve(),
-      commonjs(),
       babel({
         exclude: 'node_modules/**',
       }),
+      commonjs(),
     ],
   },
 

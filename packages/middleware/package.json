@@ -1,5 +1,5 @@
 {
-  "name": "@hanzo/react",
+  "name": "@hanzo/middleware",
   "version": "0.0.0",
   "description": "Hanzo React Components",
   "keywords": [
@@ -7,11 +7,11 @@
     "react"
   ],
   "author": "David Tai <david@verus.io>",
-  "homepage": "http://hanzo.ai",
+  "homepage": "http://middleware.ai",
   "license": "ISC",
-  "main": "dist/hanzo.cjs.js",
-  "module": "dist/hanzo.esm.js",
-  "browser": "dist/hanzo.umd.js",
+  "main": "dist/index.cjs.js",
+  "module": "dist/index.esm.js",
+  "browser": "dist/index.umd.js",
   "directories": {
     "src": "src",
     "dist": "dist"
@@ -27,7 +27,7 @@
     "url": "git+https://github.com/hanzoai/hanzo.git"
   },
   "scripts": {
-    "audit": "node_modules/.bin/source-map-explorer dist/hanzo.umd.js",
+    "audit": "node_modules/.bin/source-map-explorer dist/index.umd.js",
     "prepare": "npm run build",
     "build": "node_modules/.bin/rollup -c",
     "build:watch": "node_modules/.bin/rollup -c -w",
