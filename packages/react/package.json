@@ -9,13 +9,15 @@
   "author": "David Tai <david@verus.io>",
   "homepage": "http://hanzo.ai",
   "license": "ISC",
-  "main": "lib/react.js",
+  "main": "dist/hanzo.cjs.js",
+  "module": "dist/hanzo.esm.js",
+  "browser": "dist/hanzo.umd.js",
   "directories": {
-    "lib": "lib",
-    "test": "__tests__"
+    "src": "src",
+    "dist": "dist"
   },
   "files": [
-    "lib"
+    "dist"
   ],
   "publishConfig": {
     "access": "public"
@@ -25,9 +27,42 @@
     "url": "git+https://github.com/hanzoai/hanzo.git"
   },
   "scripts": {
-    "test": "echo \"Error: run tests from root\" && exit 1"
+    "audit": "node_modules/.bin/source-map-explorer dist/hanzo.umd.js",
+    "prepare": "npm run build",
+    "build": "node_modules/.bin/rollup -c",
+    "build:watch": "node_modules/.bin/rollup -c -w",
+    "watch": "node_modules/.bin/concurrently 'npm run build:watch' 'node_modules/.bin/serve -l tcp://127.0.0.1'",
+    "test": "node_modules/.bin/jest && npm run build",
+    "test:coverage": "node_modules/.bin/jest --collect-coverage"
   },
   "bugs": {
     "url": "https://github.com/hanzoai/hanzo/issues"
-  }
+  },
+  "devDependencies": {
+    "@babel/core": "7.6.2",
+    "@babel/plugin-proposal-class-properties": "7.5.5",
+    "@babel/plugin-proposal-decorators": "7.6.0",
+    "@babel/preset-env": "7.6.2",
+    "babel-core": "7.0.0-bridge.0",
+    "babel-jest": "24.9.0",
+    "concurrently": "4.1.2",
+    "jest": "24.9.0",
+    "rollup": "1.23.0",
+    "rollup-plugin-babel": "4.3.3",
+    "rollup-plugin-commonjs": "10.1.0",
+    "rollup-plugin-node-resolve": "5.2.0",
+    "serve": "11.2.0",
+    "source-map-explorer": "2.1.0"
+  },
+  "renovate": {
+    "extends": [
+      "config:js-lib"
+    ],
+    "automerge": true,
+    "major": {
+      "automerge": false
+    },
+    "automergeType": "branch"
+  },
+  "browserslist": "> 0.25%, not dead"
 }
