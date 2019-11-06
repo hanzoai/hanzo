@@ -20,7 +20,6 @@ module.exports = (api) => {
         { plugins: ['styled-jsx-plugin-stylus'] }
       ]
     ],
-    exclude: [],
     // ignore: [/node_modules\/(?!.*d3.*)/],
   }
 }

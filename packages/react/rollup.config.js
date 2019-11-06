@@ -3,6 +3,9 @@ import commonjs from 'rollup-plugin-commonjs'
 import pkg from './package.json'
 import babel from 'rollup-plugin-babel'
 import json from 'rollup-plugin-json'
+import less from 'rollup-plugin-less'
+import image from 'rollup-plugin-image'
+import embedCSS from 'rollup-plugin-embed-css'
 
 import fs from 'fs'
 import nodeEval from 'node-eval'
@@ -28,44 +31,51 @@ export function getNamedExports(moduleIds) {
     return result
 }
 
+const plugins = [
+  json({
+    // All JSON files will be parsed by default,
+    // but you can also specifically include/exclude files
+    include: 'node_modules/**',
+
+    // for tree-shaking, properties will be declared as
+    // variables, using either `var` or `const`
+    preferConst: true, // Default: false
+
+    // specify indentation for the generated default export —
+    // defaults to '\t'
+    indent: '  ',
+
+    // ignores indent and generates the smallest code
+    compact: true, // Default: false
+
+    // generate a named export for every property of the JSON object
+    namedExports: true // Default: true
+  }),
+  babel({
+    exclude: 'node_modules/**',
+  }),
+  embedCSS(),
+  image(),
+  resolve({
+    extensions: [ '.mjs', '.js', '.jsx', '.json' ],
+  }),
+  commonjs({
+    namedExports: getNamedExports(['react', 'react-is', 'prop-types', 'lodash']),
+  }),
+]
+
 export default [
-  // // browser-friendly UMD build
-  // {
-  //   input: 'src/index.js',
-  //   output: {
-  //     name: 'rollupJestBoilerplate',
-  //     file: pkg.browser,
-  //     format: 'umd',
-  //     sourcemap: true,
-  //   },
-  //   plugins: [
-  //     resolve(),
-  //     json({
-  //       // All JSON files will be parsed by default,
-  //       // but you can also specifically include/exclude files
-  //       include: 'node_modules/**',
-  //       exclude: [ 'node_modules/foo/**', 'node_modules/bar/**' ],
-
-  //       // for tree-shaking, properties will be declared as
-  //       // variables, using either `var` or `const`
-  //       preferConst: true, // Default: false
-
-  //       // specify indentation for the generated default export —
-  //       // defaults to '\t'
-  //       indent: '  ',
-
-  //       // ignores indent and generates the smallest code
-  //       compact: true, // Default: false
-
-  //       // generate a named export for every property of the JSON object
-  //       namedExports: true // Default: true
-  //     }),
-  //     babel(),
-  //     commonjs({
-  //       namedExports: getNamedExports(['react', 'react-is', 'prop-types'])
-  //     }),
-  //   ],
-  // },
+  // browser-friendly UMD build
+  {
+    input: 'src/index.js',
+    output: {
+      name: 'index',
+      file: pkg.browser,
+      format: 'umd',
+      sourcemap: true,
+    },
+    plugins,
+  },
 
   // CommonJS (for Node) and ES module (for bundlers) build.
   // (We could have three entries in the configuration array
@@ -76,36 +86,10 @@ export default [
   {
     input: 'src/index.js',
     external: [],
-    plugins: [
-      babel({
-        exclude: 'node_modules/**',
-      }),
-      json({
-        // All JSON files will be parsed by default,
-        // but you can also specifically include/exclude files
-        include: 'node_modules/**',
-
-        // for tree-shaking, properties will be declared as
-        // variables, using either `var` or `const`
-        preferConst: true, // Default: false
-
-        // specify indentation for the generated default export —
-        // defaults to '\t'
-        indent: '  ',
-
-        // ignores indent and generates the smallest code
-        compact: true, // Default: false
-
-        // generate a named export for every property of the JSON object
-        namedExports: true // Default: true
-      }),
-      resolve(),
-      commonjs({
-        namedExports: getNamedExports(['react', 'react-is', 'prop-types'])
-      }),
-    ],
+    plugins,
     output: [
-      { dir: pkg.main.replace('index.js', ''), format: 'cjs', sourcemap: true },
+      { file: pkg.main, format: 'cjs', sourcemap: true },
+      { file: pkg.module, format: 'es', sourcemap: true },
     ],
   },
 ]

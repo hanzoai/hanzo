@@ -1,9 +1,8 @@
 import { createRef, Component } from 'react'
 
 import control from './control'
-import dynamic from 'next/dynamic';
 
-const MUIPhoneNumber=dynamic(import ('material-ui-phone-number'),{ssr:false});
+import MUIPhoneNumber from './material-ui-phone-number'
 
 //
 // *** Hanzo Standardized Material UI Phone Input ***

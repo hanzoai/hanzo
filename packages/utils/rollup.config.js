@@ -36,7 +36,7 @@ export default [
   {
     input: 'src/index.js',
     output: {
-      name: 'rollupJestBoilerplate',
+      name: 'index',
       file: pkg.browser,
       format: 'umd',
       sourcemap: true,
@@ -56,6 +56,7 @@ export default [
     plugins,
     output: [
       { file: pkg.main, format: 'cjs', sourcemap: true },
+      { file: pkg.module, format: 'es', sourcemap: true },
     ],
   },
 ]
