@@ -1,4 +1,4 @@
-import isFunction from '@hanzo/utils'
+import { isFunction } from '@hanzo/utils'
 
 let matches = (valOrFn, type = 'fields') => {
   return (value) => {

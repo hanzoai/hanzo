@@ -66,6 +66,7 @@
   },
   "browserslist": "> 0.25%, not dead",
   "dependencies": {
+    "@hanzo/utils": "^0.0.1",
     "libphonenumber-js": "1.7.26",
     "rollup-plugin-json": "4.0.0"
   }

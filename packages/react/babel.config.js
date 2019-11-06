@@ -2,21 +2,23 @@ module.exports = (api) => {
   api.cache(true)
 
   return {
-    'presets': [
+    presets: [
       [
-        'next/babel',
+        '@babel/preset-env',
         {
-          'styled-jsx': {
-            'plugins': ['styled-jsx-plugin-stylus']
-          }
+          modules: false,
         }
-      ]
+      ],
     ],
-    'plugins': [
+    plugins: [
       'transform-react-pug',
       '@babel/transform-react-jsx',
       ['@babel/plugin-proposal-decorators', { 'legacy': true }],
-      ['@babel/plugin-proposal-class-properties', { 'loose': true }]
+      ['@babel/plugin-proposal-class-properties', { 'loose': true }],
+      [
+        'styled-jsx/babel',
+        { plugins: ['styled-jsx-plugin-stylus'] }
+      ]
     ],
     exclude: [],
     // ignore: [/node_modules\/(?!.*d3.*)/],
