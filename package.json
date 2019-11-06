@@ -12,6 +12,7 @@
   "scripts": {
     "bootstrap": "node_modules/.bin/lerna bootstrap",
     "build": "npm run bootstrap && node_modules/.bin/lerna run build",
+    "patch": "node_modules/.bin/lerna version patch",
     "minor": "node_modules/.bin/lerna version minor",
     "major": "node_modules/.bin/lerna version major",
     "publish": "node_modules/.bin/lerna publish from-git"
