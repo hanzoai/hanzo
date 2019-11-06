@@ -7,13 +7,11 @@ import json from 'rollup-plugin-json'
 const plugins = [
   babel({
     exclude: 'node_modules/**',
-    runtimeHelpers: true,
   }),
   json({
     // All JSON files will be parsed by default,
     // but you can also specifically include/exclude files
     include: 'node_modules/**',
-    exclude: [ 'node_modules/foo/**', 'node_modules/bar/**' ],
 
     // for tree-shaking, properties will be declared as
     // variables, using either `var` or `const`
@@ -58,7 +56,6 @@ export default [
     plugins,
     output: [
       { file: pkg.main, format: 'cjs', sourcemap: true },
-      { file: pkg.module, format: 'es', sourcemap: true },
     ],
   },
 ]
