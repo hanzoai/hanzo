@@ -1,11 +1,11 @@
-let splitName = (v) => {
+const splitName = (v, oldV, src) => {
   if (!v || !v.split) {
     throw new Error('Name is missing.')
   }
 
   let [firstName, ...lastName] = v.split(' ')
-  this.props.data.set('firstName', firstName)
-  this.props.data.set('lastName', lastName.join(' '))
+  src.firstName = firstName
+  src.lastName = lastName
 
   return v
 }

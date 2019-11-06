@@ -3,10 +3,9 @@ import { Component } from 'react'
 import classnames from 'classnames'
 import {
   isFunction,
-  valueOrCall,
   valueOrError,
   valueOrEvent,
-} from '../../src/util'
+} from '@hanzo/utils'
 
 //
 // *** Hanzo Standardized Control Decorator ***

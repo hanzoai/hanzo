@@ -8,11 +8,9 @@ import { KeyboardDatePicker } from '@material-ui/pickers'
 
 import {
   defaultFormat,
-  renderUIDate,
-  renderDate,
   renderJSONDate,
   isFunction,
-} from '../../src/util'
+} from '@hanzo/utils'
 
 //
 // *** Hanzo Standardized Keyboard Date Picker ***

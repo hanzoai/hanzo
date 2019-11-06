@@ -8,7 +8,7 @@ import {
 
 import {
   isFunction,
-} from '../../src/util'
+} from '@hanzo/utils'
 
 const SPECIALNIL = '☭'
 

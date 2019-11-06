@@ -1,7 +1,7 @@
-import resolve from 'rollup-plugin-node-resolve';
-import commonjs from 'rollup-plugin-commonjs';
-import pkg from './package.json';
-import babel from 'rollup-plugin-babel';
+import resolve from 'rollup-plugin-node-resolve'
+import commonjs from 'rollup-plugin-commonjs'
+import pkg from './package.json'
+import babel from 'rollup-plugin-babel'
 import json from 'rollup-plugin-json'
 
 export default [
@@ -37,7 +37,6 @@ export default [
         namedExports: true // Default: true
       }),
       babel({
-        exclude: 'node_modules/**',
       }),
       commonjs(),
     ],
@@ -52,9 +51,8 @@ export default [
   {
     input: 'src/index.js',
     external: [],
-    output: [
-      { file: pkg.main, format: 'cjs', sourcemap: true },
-      { file: pkg.module, format: 'es', sourcemap: true },
-    ],
+    output: {
+      file: pkg.module, format: 'es', sourcemap: true
+    },
   },
-];
+]
