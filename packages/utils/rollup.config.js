@@ -3,6 +3,8 @@ import commonjs from 'rollup-plugin-commonjs'
 import pkg from './package.json'
 import babel from 'rollup-plugin-babel'
 import json from 'rollup-plugin-json'
+import filesize from 'rollup-plugin-filesize'
+import visualizer from 'rollup-plugin-visualizer'
 
 const plugins = [
   babel({
@@ -29,6 +31,8 @@ const plugins = [
   }),
   resolve(),
   commonjs(),
+  filesize(),
+  visualizer(),
 ]
 
 export default [
