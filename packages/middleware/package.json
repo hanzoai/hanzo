@@ -1,6 +1,6 @@
 {
   "name": "@hanzo/middleware",
-  "version": "0.0.3",
+  "version": "0.0.4",
   "description": "Hanzo React Components",
   "keywords": [
     "hanzo",
@@ -68,7 +68,7 @@
   },
   "browserslist": "> 0.25%, not dead",
   "dependencies": {
-    "@hanzo/utils": "^0.0.3",
+    "@hanzo/utils": "^0.0.4",
     "libphonenumber-js": "1.7.26",
     "rollup-plugin-json": "4.0.0"
   }
