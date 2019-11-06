@@ -7,6 +7,7 @@ import postcss from 'rollup-plugin-postcss'
 import url from 'postcss-url'
 import autoprefixer from 'autoprefixer'
 import filesize from 'rollup-plugin-filesize'
+import visualizer from 'rollup-plugin-visualizer'
 import peerDepsExternal from 'rollup-plugin-peer-deps-external'
 
 import fs from 'fs'
@@ -73,6 +74,7 @@ const plugins = [
     namedExports: getNamedExports(['react', 'react-is', 'prop-types', 'lodash']),
   }),
   filesize(),
+  visualizer(),
 ]
 
 const globals = {
