@@ -5,6 +5,9 @@ import babel from 'rollup-plugin-babel'
 import json from 'rollup-plugin-json'
 import postcss from 'rollup-plugin-postcss'
 import url from 'postcss-url'
+import autoprefixer from 'autoprefixer'
+import filesize from 'rollup-plugin-filesize'
+import peerDepsExternal from 'rollup-plugin-peer-deps-external'
 
 import fs from 'fs'
 import nodeEval from 'node-eval'
@@ -31,6 +34,7 @@ export function getNamedExports(moduleIds) {
 }
 
 const plugins = [
+  peerDepsExternal(),
   json({
     // All JSON files will be parsed by default,
     // but you can also specifically include/exclude files
@@ -52,9 +56,12 @@ const plugins = [
   }),
   postcss({
     extract: 'index.css',
-    plugins: [url({
-      url: 'inline',
-    })],
+    plugins: [
+      url({
+        url: 'inline',
+      }),
+      autoprefixer,
+    ],
   }),
   babel({
     exclude: 'node_modules/**',
@@ -65,21 +72,10 @@ const plugins = [
   commonjs({
     namedExports: getNamedExports(['react', 'react-is', 'prop-types', 'lodash']),
   }),
+  filesize(),
 ]
 
 export default [
-  // browser-friendly UMD build
-  {
-    input: 'src/index.js',
-    output: {
-      name: 'index',
-      file: pkg.browser,
-      format: 'umd',
-      sourcemap: true,
-    },
-    plugins,
-  },
-
   // CommonJS (for Node) and ES module (for bundlers) build.
   // (We could have three entries in the configuration array
   // instead of two, but it's quicker to generate multiple
@@ -91,6 +87,7 @@ export default [
     external: [],
     plugins,
     output: [
+      { name: 'react', file: pkg.browser, format: 'umd', sourcemap: true },
       { file: pkg.main, format: 'cjs', sourcemap: true },
       { file: pkg.module, format: 'es', sourcemap: true },
     ],
