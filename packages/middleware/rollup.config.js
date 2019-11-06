@@ -5,8 +5,10 @@ import babel from 'rollup-plugin-babel'
 import json from 'rollup-plugin-json'
 import filesize from 'rollup-plugin-filesize'
 import visualizer from 'rollup-plugin-visualizer'
+import peerDepsExternal from 'rollup-plugin-peer-deps-external'
 
 const plugins = [
+  peerDepsExternal(),
   babel({
     exclude: 'node_modules/**',
   }),
