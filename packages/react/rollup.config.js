@@ -63,17 +63,22 @@ const plugins = [
       autoprefixer,
     ],
   }),
-  babel({
-    exclude: 'node_modules/**',
-  }),
   resolve({
     extensions: [ '.mjs', '.js', '.jsx', '.json' ],
+  }),
+  babel({
+    exclude: 'node_modules/**',
   }),
   commonjs({
     namedExports: getNamedExports(['react', 'react-is', 'prop-types', 'lodash']),
   }),
   filesize(),
 ]
+
+const globals = {
+  // 'react': 'React',
+  // 'react-dom': 'ReactDOM',
+}
 
 export default [
   // CommonJS (for Node) and ES module (for bundlers) build.
@@ -84,12 +89,31 @@ export default [
   // `file` and `format` for each target)
   {
     input: 'src/index.js',
-    external: [],
+    external: [
+      // 'react',
+      // 'react-dom',
+    ],
     plugins,
     output: [
-      { name: 'react', file: pkg.browser, format: 'umd', sourcemap: true },
-      { file: pkg.main, format: 'cjs', sourcemap: true },
-      { file: pkg.module, format: 'es', sourcemap: true },
+      {
+        name: 'react',
+        file: pkg.browser,
+        format: 'umd',
+        sourcemap: true,
+        globals,
+      },
+      {
+        file: pkg.main,
+        format: 'cjs',
+        sourcemap: true,
+        globals,
+      },
+      {
+        file: pkg.module,
+        format: 'es',
+        sourcemap: true,
+        globals,
+      },
     ],
   },
 ]

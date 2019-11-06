@@ -1,4 +1,4 @@
-import { createRef, Component } from 'react'
+import React, { createRef, Component } from 'react'
 
 import control from './control'
 

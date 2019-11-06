@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { Component } from 'react'
 
 import control from './control'
 import {
@@ -15,7 +15,7 @@ import { withStyles } from '@material-ui/core/styles'
 // *** Hanzo Standardized Switch ***
 //
 
-export class BaseMUISwitch extends React.Component{
+export class BaseMUISwitch extends Component{
   constructor(props) {
     super(props)
   }

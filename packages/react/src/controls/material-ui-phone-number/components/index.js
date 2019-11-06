@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { Component } from 'react'
 import PropTypes from 'prop-types'
 import classNames from 'classnames'
 import TextField from '@material-ui/core/TextField'
@@ -54,7 +54,7 @@ const styles = () => ({
   },
 })
 
-class MaterialUiPhoneNumber extends React.Component {
+class MaterialUiPhoneNumber extends Component {
   flags = {}
 
   guessSelectedCountry = memoize((inputNumber, onlyCountries, defaultCountry) => {
