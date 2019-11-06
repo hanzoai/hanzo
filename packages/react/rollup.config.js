@@ -3,8 +3,8 @@ import commonjs from 'rollup-plugin-commonjs'
 import pkg from './package.json'
 import babel from 'rollup-plugin-babel'
 import json from 'rollup-plugin-json'
-import image from 'rollup-plugin-image'
-import embedCSS from 'rollup-plugin-embed-css'
+import postcss from 'rollup-plugin-postcss'
+import url from 'postcss-url'
 
 import fs from 'fs'
 import nodeEval from 'node-eval'
@@ -50,11 +50,15 @@ const plugins = [
     // generate a named export for every property of the JSON object
     namedExports: true // Default: true
   }),
+  postcss({
+    extract: 'index.css',
+    plugins: [url({
+      url: 'inline',
+    })],
+  }),
   babel({
     exclude: 'node_modules/**',
   }),
-  embedCSS(),
-  image(),
   resolve({
     extensions: [ '.mjs', '.js', '.jsx', '.json' ],
   }),
