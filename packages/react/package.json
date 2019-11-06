@@ -1,6 +1,6 @@
 {
   "name": "@hanzo/react",
-  "version": "0.0.1",
+  "version": "0.0.2",
   "description": "Hanzo React Components",
   "keywords": [
     "hanzo",
@@ -53,8 +53,8 @@
     "rollup-plugin-commonjs": "10.1.0",
     "rollup-plugin-node-resolve": "5.2.0",
     "serve": "11.2.0",
-    "styled-jsx-plugin-stylus": "0.0.4",
-    "source-map-explorer": "2.1.0"
+    "source-map-explorer": "2.1.0",
+    "styled-jsx-plugin-stylus": "0.0.4"
   },
   "renovate": {
     "extends": [
@@ -69,7 +69,7 @@
   "browserslist": "> 0.25%, not dead",
   "dependencies": {
     "@date-io/moment": "1.3.11",
-    "@hanzo/utils": "^0.0.1",
+    "@hanzo/utils": "^0.0.2",
     "@material-ui/core": "4.6.0",
     "@material-ui/pickers": "3.2.7",
     "classnames": "2.2.6",
