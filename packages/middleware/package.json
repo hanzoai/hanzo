@@ -10,13 +10,14 @@
   "homepage": "http://middleware.ai",
   "license": "ISC",
   "main": "dist/index.cjs.js",
-  "module": "dist/index.esm.js",
+  "module": "src/index.js",
   "browser": "dist/index.umd.js",
   "directories": {
     "src": "src",
     "dist": "dist"
   },
   "files": [
+    "src",
     "dist"
   ],
   "publishConfig": {
@@ -66,7 +67,7 @@
   },
   "browserslist": "> 0.25%, not dead",
   "dependencies": {
-    "@hanzo/utils": "^0.0.2",
+    "@hanzo/utils": "0.0.2",
     "libphonenumber-js": "1.7.26",
     "rollup-plugin-json": "4.0.0"
   }
