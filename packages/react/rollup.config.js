@@ -3,7 +3,6 @@ import commonjs from 'rollup-plugin-commonjs'
 import pkg from './package.json'
 import babel from 'rollup-plugin-babel'
 import json from 'rollup-plugin-json'
-import less from 'rollup-plugin-less'
 import image from 'rollup-plugin-image'
 import embedCSS from 'rollup-plugin-embed-css'
 
