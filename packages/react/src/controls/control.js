@@ -105,14 +105,16 @@ export default function control(ControlComponent) {
         }
         onChange = undefined
 
-        // if we are not using the getValue/setValue paid, then we must load
+        // if we are not using the getValue/setValue api, then we must load
         // a value into the system
         // some falsy values of value should not cause an initial update
-        if (value != null && value !== '' && value !== this.lastValue) {
+        if (!this.firstValue && value != null && value !== '' && value !== this.lastValue) {
+          this.firstValue = defaultValue != null && value !== ''
           onBlur(value)
           this.lastValue = value
-        } else if (defaultValue !== undefined) {
-          onBlur(defaultValue)
+        } else if (!this.firstValue && defaultValue !== undefined) {
+          this.firstValue = defaultValue != null && value !== ''
+          onBlur(defaultValue);
         }
       } else {
         setValue = undefined
