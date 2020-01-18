@@ -128,8 +128,8 @@ export default function control(ControlComponent) {
         .control(
           ref=this.inputRef
           className=classnames({
-            valid: error,
-            invalid: !error,
+            valid: !error,
+            invalid: error,
           })
         )
           ControlComponent(
