@@ -1,16 +1,17 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta http-equiv="X-UA-Compatible" content="ie=edge">
-  <title>RollUp Visualizer</title>
-  <style>:root {
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <title>RollUp Visualizer</title>
+    <style>
+    :root {
   --font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial,
     "Noto Sans", sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol",
     "Noto Color Emoji";
-  --background-color: #f5edda;
-  --text-color: #6d6875;
+  --background-color: #f7eedf;
+  --text-color: #333;
 }
 
 @media (prefers-color-scheme: dark) {
@@ -53,35 +54,15 @@ body {
 
 svg {
   vertical-align: middle;
+  height: 100%;
 }
 
-h1 {
-  font-weight: 600;
-  font-size: 70px;
-  text-transform: uppercase;
-  text-align: center;
-}
-
-.chart {
+main {
   position: relative;
   margin: 0 auto;
-  min-height: 350px;
-}
-
-#main {
-  width: 1000px;
-  margin: 0 auto;
   flex: 1;
-}
-
-footer {
-  text-align: center;
-  font-size: 10px;
+  height: 100%;
   padding: 20px;
-}
-
-a {
-  color: var(--text-color);
 }
 
 .tooltip {
@@ -111,70 +92,15 @@ a {
   background-color: var(--background-color);
   color: var(--text-color);
 }
-
-path {
-  stroke: #fff;
-}
-
-#main {
-  width: 700px;
-}
-
-.details {
-  position: absolute;
-  top: 350px;
-  left: 50%;
-  width: 170px;
-  margin-left: -85px;
-  font-size: 14px;
-  text-align: center;
-  color: #eee;
-  z-index: 100;
-  overflow: hidden;
-  text-overflow: ellipsis;
-}
-
-.details-size {
-  font-size: 0.8em;
-  margin-top: 1em;
-}
-
-.details-name {
-  font-weight: bold;
-}
-
-.details-size::before {
-  content: "(";
-}
-
-.details-size::after {
-  content: ")";
-}
-
-.details-percentage {
-  margin: 0.4em 0 0em;
-  font-size: 2.4em;
-  line-height: 1em;
-}
-
-rect {
-  fill: cadetblue;
-  opacity: 0.3;
-  stroke: white;
-}</style>
-  <style>undefined</style>
-</head>
-<body>
-  <header>
-    <h1>RollUp Visualizer</h1>
-  </header>
-  <main id="main"></main>
-  <footer>
-    <span>Generated with <a href="https://github.com/btd/rollup-plugin-visualizer" target="_blank" rel="noopener noreferrer">rollup-plugin-visualizer</a></span>
-  </footer>
-  <script>window.nodesData = [{"id":"index.esm.js","root":{"name":"root","children":[{"name":"\u0000rollupPluginBabelHelpers.js","children":[],"size":6015,"originalSize":42897},{"name":"\u0000commonjsHelpers.js","children":[],"size":574,"originalSize":686},{"name":"node_modules","children":[{"name":"classnames","children":[{"name":"index.js","children":[],"size":987,"originalSize":1198}]},{"name":"react-is","children":[{"name":"cjs","children":[{"name":"react-is.production.min.js","children":[],"size":4294,"originalSize":2557},{"name":"react-is.development.js","children":[],"size":10328,"originalSize":8779}]},{"name":"index.js","children":[],"size":1231,"originalSize":196}]},{"name":"object-assign","children":[{"name":"index.js","children":[],"size":2094,"originalSize":2108}]},{"name":"prop-types","children":[{"name":"lib","children":[{"name":"ReactPropTypesSecret.js","children":[],"size":310,"originalSize":314}]},{"name":"checkPropTypes.js","children":[],"size":3577,"originalSize":3781},{"name":"factoryWithTypeCheckers.js","children":[],"size":21224,"originalSize":21563},{"name":"factoryWithThrowingShims.js","children":[],"size":1366,"originalSize":1621},{"name":"index.js","children":[],"size":1525,"originalSize":710}]},{"name":"fast-memoize","children":[{"name":"src","children":[{"name":"index.js","children":[],"size":2659,"originalSize":2626}]}]},{"name":"moment","children":[{"name":"moment.js","children":[],"size":150830,"originalSize":150941}]},{"name":"@date-io","children":[{"name":"moment","children":[{"name":"build","children":[{"name":"index.esm.js","children":[],"size":7396,"originalSize":7466}]}]}]},{"name":"@babel","children":[{"name":"runtime","children":[{"name":"helpers","children":[{"name":"esm","children":[{"name":"defineProperty.js","children":[],"size":256,"originalSize":269},{"name":"classCallCheck.js","children":[],"size":163,"originalSize":176},{"name":"createClass.js","children":[],"size":572,"originalSize":579},{"name":"typeof.js","children":[],"size":756,"originalSize":771},{"name":"assertThisInitialized.js","children":[],"size":179,"originalSize":192},{"name":"possibleConstructorReturn.js","children":[],"size":192,"originalSize":311},{"name":"getPrototypeOf.js","children":[],"size":221,"originalSize":230},{"name":"setPrototypeOf.js","children":[],"size":191,"originalSize":200},{"name":"inherits.js","children":[],"size":430,"originalSize":487},{"name":"extends.js","children":[],"size":388,"originalSize":397},{"name":"objectWithoutPropertiesLoose.js","children":[],"size":337,"originalSize":350},{"name":"objectWithoutProperties.js","children":[],"size":547,"originalSize":632},{"name":"inheritsLoose.js","children":[],"size":189,"originalSize":204},{"name":"arrayWithHoles.js","children":[],"size":73,"originalSize":86},{"name":"iterableToArrayLimit.js","children":[],"size":608,"originalSize":621},{"name":"nonIterableRest.js","children":[],"size":112,"originalSize":125},{"name":"slicedToArray.js","children":[],"size":129,"originalSize":288}]}]}]}]},{"name":"@material-ui","children":[{"name":"pickers","children":[{"name":"esm","children":[{"name":"useUtils-cfb96ac9.js","children":[],"size":1212,"originalSize":1459},{"name":"Clock-3486e4fb.js","children":[],"size":9754,"originalSize":10418},{"name":"Wrapper-241966d7.js","children":[],"size":7615,"originalSize":8419},{"name":"Day.js","children":[],"size":1823,"originalSize":2283},{"name":"Calendar-d0dd9524.js","children":[],"size":19645,"originalSize":21055},{"name":"ClockView.js","children":[],"size":6816,"originalSize":7580},{"name":"Picker-846262ba.js","children":[],"size":14445,"originalSize":15465},{"name":"makePickerWithState-f84d1a89.js","children":[],"size":23368,"originalSize":24990},{"name":"DatePicker.js","children":[],"size":3294,"originalSize":5059}]}]}]},{"name":"clsx","children":[{"name":"dist","children":[{"name":"clsx.m.js","children":[],"size":654,"originalSize":664}]}]},{"name":"rifm","children":[{"name":"dist","children":[{"name":"rifm.esm.js","children":[],"size":4104,"originalSize":4230}]}]},{"name":"dom-helpers","children":[{"name":"esm","children":[{"name":"hasClass.js","children":[],"size":238,"originalSize":253},{"name":"addClass.js","children":[],"size":348,"originalSize":398},{"name":"removeClass.js","children":[],"size":567,"originalSize":588}]}]},{"name":"react-transition-group","children":[{"name":"esm","children":[{"name":"config.js","children":[],"size":35,"originalSize":37},{"name":"utils","children":[{"name":"PropTypes.js","children":[],"size":632,"originalSize":682},{"name":"ChildMapping.js","children":[],"size":4614,"originalSize":4706}]},{"name":"TransitionGroupContext.js","children":[],"size":55,"originalSize":68},{"name":"Transition.js","children":[],"size":16172,"originalSize":16646},{"name":"CSSTransition.js","children":[],"size":10289,"originalSize":10796},{"name":"TransitionGroup.js","children":[],"size":5938,"originalSize":6508}]}]}]},{"name":"src","children":[{"name":"controls","children":[{"name":"control.js","children":[],"size":5023,"originalSize":4134},{"name":"MUIText.js","children":[],"size":8939,"originalSize":7246},{"name":"material-ui-phone-number","children":[{"name":"country_data.js","children":[],"size":15924,"originalSize":21245},{"name":"components","children":[{"name":"Item.js","children":[],"size":2004,"originalSize":1541},{"name":"polyfills.js","children":[],"size":2111,"originalSize":2136},{"name":"index.js","children":[],"size":33143,"originalSize":26973}]}]},{"name":"MUIPhone.js","children":[],"size":2817,"originalSize":1700},{"name":"MUICheckbox.js","children":[],"size":3079,"originalSize":1917},{"name":"MUISwitch.js","children":[],"size":3043,"originalSize":1904},{"name":"MUIKeyboardDatePicker.js","children":[],"size":3057,"originalSize":2070}]}]}]}}];</script>
-  <script>window.chartParameters = {};</script>
-  <script>(function () {
+    </style>
+    <style>
+    
+    </style>
+  </head>
+  <body>
+    <main></main>
+    <script>
+    var drawChart = (function () {
   'use strict';
 
   var xhtml = "http://www.w3.org/1999/xhtml";
@@ -190,7 +116,7 @@ rect {
   function namespace(name) {
     var prefix = name += "", i = prefix.indexOf(":");
     if (i >= 0 && (prefix = name.slice(0, i)) !== "xmlns") name = name.slice(i + 1);
-    return namespaces.hasOwnProperty(prefix) ? {space: namespaces[prefix], local: name} : name;
+    return namespaces.hasOwnProperty(prefix) ? {space: namespaces[prefix], local: name} : name; // eslint-disable-line no-prototype-builtins
   }
 
   function creatorInherit(name) {
@@ -239,6 +165,12 @@ rect {
     return new Selection(subgroups, this._parents);
   }
 
+  function array(x) {
+    return typeof x === "object" && "length" in x
+      ? x // Array, TypedArray, NodeList, array-like
+      : Array.from(x); // Map, Set, iterable, string, or anything else
+  }
+
   function empty() {
     return [];
   }
@@ -249,8 +181,16 @@ rect {
     };
   }
 
+  function arrayAll(select) {
+    return function() {
+      var group = select.apply(this, arguments);
+      return group == null ? [] : array(group);
+    };
+  }
+
   function selection_selectAll(select) {
-    if (typeof select !== "function") select = selectorAll(select);
+    if (typeof select === "function") select = arrayAll(select);
+    else select = selectorAll(select);
 
     for (var groups = this._groups, m = groups.length, subgroups = [], parents = [], j = 0; j < m; ++j) {
       for (var group = groups[j], n = group.length, node, i = 0; i < n; ++i) {
@@ -314,8 +254,6 @@ rect {
     };
   }
 
-  var keyPrefix = "$"; // Protect against keys like “__proto__”.
-
   function bindIndex(parent, group, enter, update, exit, data) {
     var i = 0,
         node,
@@ -345,7 +283,7 @@ rect {
   function bindKey(parent, group, enter, update, exit, data, key) {
     var i,
         node,
-        nodeByKeyValue = {},
+        nodeByKeyValue = new Map,
         groupLength = group.length,
         dataLength = data.length,
         keyValues = new Array(groupLength),
@@ -355,11 +293,11 @@ rect {
     // If multiple nodes have the same key, the duplicates are added to exit.
     for (i = 0; i < groupLength; ++i) {
       if (node = group[i]) {
-        keyValues[i] = keyValue = keyPrefix + key.call(node, node.__data__, i, group);
-        if (keyValue in nodeByKeyValue) {
+        keyValues[i] = keyValue = key.call(node, node.__data__, i, group) + "";
+        if (nodeByKeyValue.has(keyValue)) {
           exit[i] = node;
         } else {
-          nodeByKeyValue[keyValue] = node;
+          nodeByKeyValue.set(keyValue, node);
         }
       }
     }
@@ -368,11 +306,11 @@ rect {
     // If there a node associated with this key, join and add it to update.
     // If there is not (or the key is a duplicate), add it to enter.
     for (i = 0; i < dataLength; ++i) {
-      keyValue = keyPrefix + key.call(parent, data[i], i, data);
-      if (node = nodeByKeyValue[keyValue]) {
+      keyValue = key.call(parent, data[i], i, data) + "";
+      if (node = nodeByKeyValue.get(keyValue)) {
         update[i] = node;
         node.__data__ = data[i];
-        nodeByKeyValue[keyValue] = null;
+        nodeByKeyValue.delete(keyValue);
       } else {
         enter[i] = new EnterNode(parent, data[i]);
       }
@@ -380,18 +318,18 @@ rect {
 
     // Add any remaining nodes that were not bound to data to exit.
     for (i = 0; i < groupLength; ++i) {
-      if ((node = group[i]) && (nodeByKeyValue[keyValues[i]] === node)) {
+      if ((node = group[i]) && (nodeByKeyValue.get(keyValues[i]) === node)) {
         exit[i] = node;
       }
     }
   }
 
+  function datum(node) {
+    return node.__data__;
+  }
+
   function selection_data(value, key) {
-    if (!value) {
-      data = new Array(this.size()), j = -1;
-      this.each(function(d) { data[++j] = d; });
-      return data;
-    }
+    if (!arguments.length) return Array.from(this, datum);
 
     var bind = key ? bindKey : bindIndex,
         parents = this._parents,
@@ -403,7 +341,7 @@ rect {
       var parent = parents[j],
           group = groups[j],
           groupLength = group.length,
-          data = value.call(parent, parent && parent.__data__, j, parents),
+          data = array(value.call(parent, parent && parent.__data__, j, parents)),
           dataLength = data.length,
           enterGroup = enter[j] = new Array(dataLength),
           updateGroup = update[j] = new Array(dataLength),
@@ -442,6 +380,7 @@ rect {
   }
 
   function selection_merge(selection) {
+    if (!(selection instanceof Selection)) throw new Error("invalid merge");
 
     for (var groups0 = this._groups, groups1 = selection._groups, m0 = groups0.length, m1 = groups1.length, m = Math.min(m0, m1), merges = new Array(m0), j = 0; j < m; ++j) {
       for (var group0 = groups0[j], group1 = groups1[j], n = group0.length, merge = merges[j] = new Array(n), node, i = 0; i < n; ++i) {
@@ -503,9 +442,7 @@ rect {
   }
 
   function selection_nodes() {
-    var nodes = new Array(this.size()), i = -1;
-    this.each(function() { nodes[++i] = this; });
-    return nodes;
+    return Array.from(this);
   }
 
   function selection_node() {
@@ -521,8 +458,8 @@ rect {
   }
 
   function selection_size() {
-    var size = 0;
-    this.each(function() { ++size; });
+    let size = 0;
+    for (const node of this) ++size; // eslint-disable-line no-unused-vars
     return size;
   }
 
@@ -839,11 +776,13 @@ rect {
   }
 
   function selection_cloneShallow() {
-    return this.parentNode.insertBefore(this.cloneNode(false), this.nextSibling);
+    var clone = this.cloneNode(false), parent = this.parentNode;
+    return parent ? parent.insertBefore(clone, this.nextSibling) : clone;
   }
 
   function selection_cloneDeep() {
-    return this.parentNode.insertBefore(this.cloneNode(true), this.nextSibling);
+    var clone = this.cloneNode(true), parent = this.parentNode;
+    return parent ? parent.insertBefore(clone, this.nextSibling) : clone;
   }
 
   function selection_clone(deep) {
@@ -856,31 +795,9 @@ rect {
         : this.node().__data__;
   }
 
-  var filterEvents = {};
-
-  if (typeof document !== "undefined") {
-    var element = document.documentElement;
-    if (!("onmouseenter" in element)) {
-      filterEvents = {mouseenter: "mouseover", mouseleave: "mouseout"};
-    }
-  }
-
-  function filterContextListener(listener, index, group) {
-    listener = contextListener(listener, index, group);
+  function contextListener(listener) {
     return function(event) {
-      var related = event.relatedTarget;
-      if (!related || (related !== this && !(related.compareDocumentPosition(this) & 8))) {
-        listener.call(this, event);
-      }
-    };
-  }
-
-  function contextListener(listener, index, group) {
-    return function(event1) {
-      try {
-        listener.call(this, this.__data__, index, group);
-      } finally {
-      }
+      listener.call(this, event, this.__data__);
     };
   }
 
@@ -898,7 +815,7 @@ rect {
       if (!on) return;
       for (var j = 0, i = -1, m = on.length, o; j < m; ++j) {
         if (o = on[j], (!typename.type || o.type === typename.type) && o.name === typename.name) {
-          this.removeEventListener(o.type, o.listener, o.capture);
+          this.removeEventListener(o.type, o.listener, o.options);
         } else {
           on[++i] = o;
         }
@@ -908,26 +825,25 @@ rect {
     };
   }
 
-  function onAdd(typename, value, capture) {
-    var wrap = filterEvents.hasOwnProperty(typename.type) ? filterContextListener : contextListener;
-    return function(d, i, group) {
-      var on = this.__on, o, listener = wrap(value, i, group);
+  function onAdd(typename, value, options) {
+    return function() {
+      var on = this.__on, o, listener = contextListener(value);
       if (on) for (var j = 0, m = on.length; j < m; ++j) {
         if ((o = on[j]).type === typename.type && o.name === typename.name) {
-          this.removeEventListener(o.type, o.listener, o.capture);
-          this.addEventListener(o.type, o.listener = listener, o.capture = capture);
+          this.removeEventListener(o.type, o.listener, o.options);
+          this.addEventListener(o.type, o.listener = listener, o.options = options);
           o.value = value;
           return;
         }
       }
-      this.addEventListener(typename.type, listener, capture);
-      o = {type: typename.type, name: typename.name, value: value, listener: listener, capture: capture};
+      this.addEventListener(typename.type, listener, options);
+      o = {type: typename.type, name: typename.name, value: value, listener: listener, options: options};
       if (!on) this.__on = [o];
       else on.push(o);
     };
   }
 
-  function selection_on(typename, value, capture) {
+  function selection_on(typename, value, options) {
     var typenames = parseTypenames(typename + ""), i, n = typenames.length, t;
 
     if (arguments.length < 2) {
@@ -943,8 +859,7 @@ rect {
     }
 
     on = value ? onAdd : onRemove;
-    if (capture == null) capture = false;
-    for (i = 0; i < n; ++i) this.each(on(typenames[i], value, capture));
+    for (i = 0; i < n; ++i) this.each(on(typenames[i], value, options));
     return this;
   }
 
@@ -979,6 +894,14 @@ rect {
     return this.each((typeof params === "function"
         ? dispatchFunction
         : dispatchConstant)(type, params));
+  }
+
+  function* selection_iterator() {
+    for (var groups = this._groups, j = 0, m = groups.length; j < m; ++j) {
+      for (var group = groups[j], i = 0, n = group.length, node; i < n; ++i) {
+        if (node = group[i]) yield node;
+      }
+    }
   }
 
   var root = [null];
@@ -1024,13 +947,149 @@ rect {
     clone: selection_clone,
     datum: selection_datum,
     on: selection_on,
-    dispatch: selection_dispatch
+    dispatch: selection_dispatch,
+    [Symbol.iterator]: selection_iterator
   };
 
   function select(selector) {
     return typeof selector === "string"
         ? new Selection([[document.querySelector(selector)]], [document.documentElement])
         : new Selection([[selector]], root);
+  }
+
+  function pointer(event, node = event.currentTarget) {
+    if (node) {
+      var svg = node.ownerSVGElement || node;
+      if (svg.createSVGPoint) {
+        var point = svg.createSVGPoint();
+        point.x = event.clientX, point.y = event.clientY;
+        point = point.matrixTransform(node.getScreenCTM().inverse());
+        return [point.x, point.y];
+      }
+      if (node.getBoundingClientRect) {
+        var rect = node.getBoundingClientRect();
+        return [event.clientX - rect.left - node.clientLeft, event.clientY - rect.top - node.clientTop];
+      }
+    }
+    return [event.pageX, event.pageY];
+  }
+
+  function ascending$1(a, b) {
+    return a < b ? -1 : a > b ? 1 : a >= b ? 0 : NaN;
+  }
+
+  function bisector(compare) {
+    if (compare.length === 1) compare = ascendingComparator(compare);
+    return {
+      left: function(a, x, lo, hi) {
+        if (lo == null) lo = 0;
+        if (hi == null) hi = a.length;
+        while (lo < hi) {
+          var mid = lo + hi >>> 1;
+          if (compare(a[mid], x) < 0) lo = mid + 1;
+          else hi = mid;
+        }
+        return lo;
+      },
+      right: function(a, x, lo, hi) {
+        if (lo == null) lo = 0;
+        if (hi == null) hi = a.length;
+        while (lo < hi) {
+          var mid = lo + hi >>> 1;
+          if (compare(a[mid], x) > 0) hi = mid;
+          else lo = mid + 1;
+        }
+        return lo;
+      }
+    };
+  }
+
+  function ascendingComparator(f) {
+    return function(d, x) {
+      return ascending$1(f(d), x);
+    };
+  }
+
+  var ascendingBisect = bisector(ascending$1);
+  var bisectRight = ascendingBisect.right;
+
+  function identity(x) {
+    return x;
+  }
+
+  function group(values, ...keys) {
+    return nest(values, identity, identity, keys);
+  }
+
+  function nest(values, map, reduce, keys) {
+    return (function regroup(values, i) {
+      if (i >= keys.length) return reduce(values);
+      const groups = new Map();
+      const keyof = keys[i++];
+      let index = -1;
+      for (const value of values) {
+        const key = keyof(value, ++index, values);
+        const group = groups.get(key);
+        if (group) group.push(value);
+        else groups.set(key, [value]);
+      }
+      for (const [key, values] of groups) {
+        groups.set(key, regroup(values, i));
+      }
+      return map(groups);
+    })(values, 0);
+  }
+
+  var e10 = Math.sqrt(50),
+      e5 = Math.sqrt(10),
+      e2 = Math.sqrt(2);
+
+  function ticks(start, stop, count) {
+    var reverse,
+        i = -1,
+        n,
+        ticks,
+        step;
+
+    stop = +stop, start = +start, count = +count;
+    if (start === stop && count > 0) return [start];
+    if (reverse = stop < start) n = start, start = stop, stop = n;
+    if ((step = tickIncrement(start, stop, count)) === 0 || !isFinite(step)) return [];
+
+    if (step > 0) {
+      start = Math.ceil(start / step);
+      stop = Math.floor(stop / step);
+      ticks = new Array(n = Math.ceil(stop - start + 1));
+      while (++i < n) ticks[i] = (start + i) * step;
+    } else {
+      start = Math.floor(start * step);
+      stop = Math.ceil(stop * step);
+      ticks = new Array(n = Math.ceil(start - stop + 1));
+      while (++i < n) ticks[i] = (start - i) / step;
+    }
+
+    if (reverse) ticks.reverse();
+
+    return ticks;
+  }
+
+  function tickIncrement(start, stop, count) {
+    var step = (stop - start) / Math.max(0, count),
+        power = Math.floor(Math.log(step) / Math.LN10),
+        error = step / Math.pow(10, power);
+    return power >= 0
+        ? (error >= e10 ? 10 : error >= e5 ? 5 : error >= e2 ? 2 : 1) * Math.pow(10, power)
+        : -Math.pow(10, -power) / (error >= e10 ? 10 : error >= e5 ? 5 : error >= e2 ? 2 : 1);
+  }
+
+  function tickStep(start, stop, count) {
+    var step0 = Math.abs(stop - start) / Math.max(0, count),
+        step1 = Math.pow(10, Math.floor(Math.log(step0) / Math.LN10)),
+        error = step0 / step1;
+    if (error >= e10) step1 *= 10;
+    else if (error >= e5) step1 *= 5;
+    else if (error >= e2) step1 *= 2;
+    return stop < start ? -step1 : step1;
   }
 
   function count(node) {
@@ -1238,6 +1297,21 @@ rect {
     copy: node_copy
   };
 
+  function required(f) {
+    if (typeof f !== "function") throw new Error;
+    return f;
+  }
+
+  function constantZero() {
+    return 0;
+  }
+
+  function constant$1(x) {
+    return function() {
+      return x;
+    };
+  }
+
   function roundNode(node) {
     node.x0 = Math.round(node.x0);
     node.y0 = Math.round(node.y0);
@@ -1258,656 +1332,322 @@ rect {
     }
   }
 
-  function d3partition() {
-    var dx = 1,
-        dy = 1,
-        padding = 0,
-        round = false;
+  function treemapSlice(parent, x0, y0, x1, y1) {
+    var nodes = parent.children,
+        node,
+        i = -1,
+        n = nodes.length,
+        k = parent.value && (y1 - y0) / parent.value;
 
-    function partition(root) {
-      var n = root.height + 1;
+    while (++i < n) {
+      node = nodes[i], node.x0 = x0, node.x1 = x1;
+      node.y0 = y0, node.y1 = y0 += node.value * k;
+    }
+  }
+
+  var phi = (1 + Math.sqrt(5)) / 2;
+
+  function squarifyRatio(ratio, parent, x0, y0, x1, y1) {
+    var rows = [],
+        nodes = parent.children,
+        row,
+        nodeValue,
+        i0 = 0,
+        i1 = 0,
+        n = nodes.length,
+        dx, dy,
+        value = parent.value,
+        sumValue,
+        minValue,
+        maxValue,
+        newRatio,
+        minRatio,
+        alpha,
+        beta;
+
+    while (i0 < n) {
+      dx = x1 - x0, dy = y1 - y0;
+
+      // Find the next non-empty node.
+      do sumValue = nodes[i1++].value; while (!sumValue && i1 < n);
+      minValue = maxValue = sumValue;
+      alpha = Math.max(dy / dx, dx / dy) / (value * ratio);
+      beta = sumValue * sumValue * alpha;
+      minRatio = Math.max(maxValue / beta, beta / minValue);
+
+      // Keep adding nodes while the aspect ratio maintains or improves.
+      for (; i1 < n; ++i1) {
+        sumValue += nodeValue = nodes[i1].value;
+        if (nodeValue < minValue) minValue = nodeValue;
+        if (nodeValue > maxValue) maxValue = nodeValue;
+        beta = sumValue * sumValue * alpha;
+        newRatio = Math.max(maxValue / beta, beta / minValue);
+        if (newRatio > minRatio) { sumValue -= nodeValue; break; }
+        minRatio = newRatio;
+      }
+
+      // Position and record the row orientation.
+      rows.push(row = {value: sumValue, dice: dx < dy, children: nodes.slice(i0, i1)});
+      if (row.dice) treemapDice(row, x0, y0, x1, value ? y0 += dy * sumValue / value : y1);
+      else treemapSlice(row, x0, y0, value ? x0 += dx * sumValue / value : x1, y1);
+      value -= sumValue, i0 = i1;
+    }
+
+    return rows;
+  }
+
+  var squarify = (function custom(ratio) {
+
+    function squarify(parent, x0, y0, x1, y1) {
+      squarifyRatio(ratio, parent, x0, y0, x1, y1);
+    }
+
+    squarify.ratio = function(x) {
+      return custom((x = +x) > 1 ? x : 1);
+    };
+
+    return squarify;
+  })(phi);
+
+  function d3treemap() {
+    var tile = squarify,
+        round = false,
+        dx = 1,
+        dy = 1,
+        paddingStack = [0],
+        paddingInner = constantZero,
+        paddingTop = constantZero,
+        paddingRight = constantZero,
+        paddingBottom = constantZero,
+        paddingLeft = constantZero;
+
+    function treemap(root) {
       root.x0 =
-      root.y0 = padding;
+      root.y0 = 0;
       root.x1 = dx;
-      root.y1 = dy / n;
-      root.eachBefore(positionNode(dy, n));
+      root.y1 = dy;
+      root.eachBefore(positionNode);
+      paddingStack = [0];
       if (round) root.eachBefore(roundNode);
       return root;
     }
 
-    function positionNode(dy, n) {
-      return function(node) {
-        if (node.children) {
-          treemapDice(node, node.x0, dy * (node.depth + 1) / n, node.x1, dy * (node.depth + 2) / n);
-        }
-        var x0 = node.x0,
-            y0 = node.y0,
-            x1 = node.x1 - padding,
-            y1 = node.y1 - padding;
+    function positionNode(node) {
+      var p = paddingStack[node.depth],
+          x0 = node.x0 + p,
+          y0 = node.y0 + p,
+          x1 = node.x1 - p,
+          y1 = node.y1 - p;
+      if (x1 < x0) x0 = x1 = (x0 + x1) / 2;
+      if (y1 < y0) y0 = y1 = (y0 + y1) / 2;
+      node.x0 = x0;
+      node.y0 = y0;
+      node.x1 = x1;
+      node.y1 = y1;
+      if (node.children) {
+        p = paddingStack[node.depth + 1] = paddingInner(node) / 2;
+        x0 += paddingLeft(node) - p;
+        y0 += paddingTop(node) - p;
+        x1 -= paddingRight(node) - p;
+        y1 -= paddingBottom(node) - p;
         if (x1 < x0) x0 = x1 = (x0 + x1) / 2;
         if (y1 < y0) y0 = y1 = (y0 + y1) / 2;
-        node.x0 = x0;
-        node.y0 = y0;
-        node.x1 = x1;
-        node.y1 = y1;
-      };
+        tile(node, x0, y0, x1, y1);
+      }
     }
 
-    partition.round = function(x) {
-      return arguments.length ? (round = !!x, partition) : round;
+    treemap.round = function(x) {
+      return arguments.length ? (round = !!x, treemap) : round;
     };
 
-    partition.size = function(x) {
-      return arguments.length ? (dx = +x[0], dy = +x[1], partition) : [dx, dy];
+    treemap.size = function(x) {
+      return arguments.length ? (dx = +x[0], dy = +x[1], treemap) : [dx, dy];
     };
 
-    partition.padding = function(x) {
-      return arguments.length ? (padding = +x, partition) : padding;
+    treemap.tile = function(x) {
+      return arguments.length ? (tile = required(x), treemap) : tile;
     };
 
-    return partition;
+    treemap.padding = function(x) {
+      return arguments.length ? treemap.paddingInner(x).paddingOuter(x) : treemap.paddingInner();
+    };
+
+    treemap.paddingInner = function(x) {
+      return arguments.length ? (paddingInner = typeof x === "function" ? x : constant$1(+x), treemap) : paddingInner;
+    };
+
+    treemap.paddingOuter = function(x) {
+      return arguments.length ? treemap.paddingTop(x).paddingRight(x).paddingBottom(x).paddingLeft(x) : treemap.paddingTop();
+    };
+
+    treemap.paddingTop = function(x) {
+      return arguments.length ? (paddingTop = typeof x === "function" ? x : constant$1(+x), treemap) : paddingTop;
+    };
+
+    treemap.paddingRight = function(x) {
+      return arguments.length ? (paddingRight = typeof x === "function" ? x : constant$1(+x), treemap) : paddingRight;
+    };
+
+    treemap.paddingBottom = function(x) {
+      return arguments.length ? (paddingBottom = typeof x === "function" ? x : constant$1(+x), treemap) : paddingBottom;
+    };
+
+    treemap.paddingLeft = function(x) {
+      return arguments.length ? (paddingLeft = typeof x === "function" ? x : constant$1(+x), treemap) : paddingLeft;
+    };
+
+    return treemap;
   }
 
-  var pi = Math.PI,
-      tau = 2 * pi,
-      epsilon = 1e-6,
-      tauEpsilon = tau - epsilon;
+  var treemapResquarify = (function custom(ratio) {
 
-  function Path() {
-    this._x0 = this._y0 = // start of current subpath
-    this._x1 = this._y1 = null; // end of current subpath
-    this._ = "";
-  }
+    function resquarify(parent, x0, y0, x1, y1) {
+      if ((rows = parent._squarify) && (rows.ratio === ratio)) {
+        var rows,
+            row,
+            nodes,
+            i,
+            j = -1,
+            n,
+            m = rows.length,
+            value = parent.value;
 
-  function path() {
-    return new Path;
-  }
-
-  Path.prototype = path.prototype = {
-    constructor: Path,
-    moveTo: function(x, y) {
-      this._ += "M" + (this._x0 = this._x1 = +x) + "," + (this._y0 = this._y1 = +y);
-    },
-    closePath: function() {
-      if (this._x1 !== null) {
-        this._x1 = this._x0, this._y1 = this._y0;
-        this._ += "Z";
-      }
-    },
-    lineTo: function(x, y) {
-      this._ += "L" + (this._x1 = +x) + "," + (this._y1 = +y);
-    },
-    quadraticCurveTo: function(x1, y1, x, y) {
-      this._ += "Q" + (+x1) + "," + (+y1) + "," + (this._x1 = +x) + "," + (this._y1 = +y);
-    },
-    bezierCurveTo: function(x1, y1, x2, y2, x, y) {
-      this._ += "C" + (+x1) + "," + (+y1) + "," + (+x2) + "," + (+y2) + "," + (this._x1 = +x) + "," + (this._y1 = +y);
-    },
-    arcTo: function(x1, y1, x2, y2, r) {
-      x1 = +x1, y1 = +y1, x2 = +x2, y2 = +y2, r = +r;
-      var x0 = this._x1,
-          y0 = this._y1,
-          x21 = x2 - x1,
-          y21 = y2 - y1,
-          x01 = x0 - x1,
-          y01 = y0 - y1,
-          l01_2 = x01 * x01 + y01 * y01;
-
-      // Is the radius negative? Error.
-      if (r < 0) throw new Error("negative radius: " + r);
-
-      // Is this path empty? Move to (x1,y1).
-      if (this._x1 === null) {
-        this._ += "M" + (this._x1 = x1) + "," + (this._y1 = y1);
-      }
-
-      // Or, is (x1,y1) coincident with (x0,y0)? Do nothing.
-      else if (!(l01_2 > epsilon));
-
-      // Or, are (x0,y0), (x1,y1) and (x2,y2) collinear?
-      // Equivalently, is (x1,y1) coincident with (x2,y2)?
-      // Or, is the radius zero? Line to (x1,y1).
-      else if (!(Math.abs(y01 * x21 - y21 * x01) > epsilon) || !r) {
-        this._ += "L" + (this._x1 = x1) + "," + (this._y1 = y1);
-      }
-
-      // Otherwise, draw an arc!
-      else {
-        var x20 = x2 - x0,
-            y20 = y2 - y0,
-            l21_2 = x21 * x21 + y21 * y21,
-            l20_2 = x20 * x20 + y20 * y20,
-            l21 = Math.sqrt(l21_2),
-            l01 = Math.sqrt(l01_2),
-            l = r * Math.tan((pi - Math.acos((l21_2 + l01_2 - l20_2) / (2 * l21 * l01))) / 2),
-            t01 = l / l01,
-            t21 = l / l21;
-
-        // If the start tangent is not coincident with (x0,y0), line to.
-        if (Math.abs(t01 - 1) > epsilon) {
-          this._ += "L" + (x1 + t01 * x01) + "," + (y1 + t01 * y01);
+        while (++j < m) {
+          row = rows[j], nodes = row.children;
+          for (i = row.value = 0, n = nodes.length; i < n; ++i) row.value += nodes[i].value;
+          if (row.dice) treemapDice(row, x0, y0, x1, y0 += (y1 - y0) * row.value / value);
+          else treemapSlice(row, x0, y0, x0 += (x1 - x0) * row.value / value, y1);
+          value -= row.value;
         }
-
-        this._ += "A" + r + "," + r + ",0,0," + (+(y01 * x20 > x01 * y20)) + "," + (this._x1 = x1 + t21 * x21) + "," + (this._y1 = y1 + t21 * y21);
+      } else {
+        parent._squarify = rows = squarifyRatio(ratio, parent, x0, y0, x1, y1);
+        rows.ratio = ratio;
       }
-    },
-    arc: function(x, y, r, a0, a1, ccw) {
-      x = +x, y = +y, r = +r, ccw = !!ccw;
-      var dx = r * Math.cos(a0),
-          dy = r * Math.sin(a0),
-          x0 = x + dx,
-          y0 = y + dy,
-          cw = 1 ^ ccw,
-          da = ccw ? a0 - a1 : a1 - a0;
-
-      // Is the radius negative? Error.
-      if (r < 0) throw new Error("negative radius: " + r);
-
-      // Is this path empty? Move to (x0,y0).
-      if (this._x1 === null) {
-        this._ += "M" + x0 + "," + y0;
-      }
-
-      // Or, is (x0,y0) not coincident with the previous point? Line to (x0,y0).
-      else if (Math.abs(this._x1 - x0) > epsilon || Math.abs(this._y1 - y0) > epsilon) {
-        this._ += "L" + x0 + "," + y0;
-      }
-
-      // Is this arc empty? We’re done.
-      if (!r) return;
-
-      // Does the angle go the wrong way? Flip the direction.
-      if (da < 0) da = da % tau + tau;
-
-      // Is this a complete circle? Draw two arcs to complete the circle.
-      if (da > tauEpsilon) {
-        this._ += "A" + r + "," + r + ",0,1," + cw + "," + (x - dx) + "," + (y - dy) + "A" + r + "," + r + ",0,1," + cw + "," + (this._x1 = x0) + "," + (this._y1 = y0);
-      }
-
-      // Is this arc non-empty? Draw an arc!
-      else if (da > epsilon) {
-        this._ += "A" + r + "," + r + ",0," + (+(da >= pi)) + "," + cw + "," + (this._x1 = x + r * Math.cos(a1)) + "," + (this._y1 = y + r * Math.sin(a1));
-      }
-    },
-    rect: function(x, y, w, h) {
-      this._ += "M" + (this._x0 = this._x1 = +x) + "," + (this._y0 = this._y1 = +y) + "h" + (+w) + "v" + (+h) + "h" + (-w) + "Z";
-    },
-    toString: function() {
-      return this._;
     }
+
+    resquarify.ratio = function(x) {
+      return custom((x = +x) > 1 ? x : 1);
+    };
+
+    return resquarify;
+  })(phi);
+
+  /*!
+   * bytes
+   * Copyright(c) 2012-2014 TJ Holowaychuk
+   * Copyright(c) 2015 Jed Watson
+   * MIT Licensed
+   */
+  var format_1 = format;
+
+  /**
+   * Module variables.
+   * @private
+   */
+
+  var formatThousandsRegExp = /\B(?=(\d{3})+(?!\d))/g;
+
+  var formatDecimalsRegExp = /(?:\.0*|(\.[^0]+)0+)$/;
+
+  var map = {
+    b:  1,
+    kb: 1 << 10,
+    mb: 1 << 20,
+    gb: 1 << 30,
+    tb: Math.pow(1024, 4),
+    pb: Math.pow(1024, 5),
   };
 
-  function constant$1(x) {
-    return function constant() {
-      return x;
-    };
-  }
+  /**
+   * Format the given value in bytes into a string.
+   *
+   * If the value is negative, it is kept as such. If it is a float,
+   * it is rounded.
+   *
+   * @param {number} value
+   * @param {object} [options]
+   * @param {number} [options.decimalPlaces=2]
+   * @param {number} [options.fixedDecimals=false]
+   * @param {string} [options.thousandsSeparator=]
+   * @param {string} [options.unit=]
+   * @param {string} [options.unitSeparator=]
+   *
+   * @returns {string|null}
+   * @public
+   */
 
-  var abs = Math.abs;
-  var atan2 = Math.atan2;
-  var cos = Math.cos;
-  var max = Math.max;
-  var min = Math.min;
-  var sin = Math.sin;
-  var sqrt = Math.sqrt;
-
-  var epsilon$1 = 1e-12;
-  var pi$1 = Math.PI;
-  var halfPi = pi$1 / 2;
-  var tau$1 = 2 * pi$1;
-
-  function acos(x) {
-    return x > 1 ? 0 : x < -1 ? pi$1 : Math.acos(x);
-  }
-
-  function asin(x) {
-    return x >= 1 ? halfPi : x <= -1 ? -halfPi : Math.asin(x);
-  }
-
-  function arcInnerRadius(d) {
-    return d.innerRadius;
-  }
-
-  function arcOuterRadius(d) {
-    return d.outerRadius;
-  }
-
-  function arcStartAngle(d) {
-    return d.startAngle;
-  }
-
-  function arcEndAngle(d) {
-    return d.endAngle;
-  }
-
-  function arcPadAngle(d) {
-    return d && d.padAngle; // Note: optional!
-  }
-
-  function intersect(x0, y0, x1, y1, x2, y2, x3, y3) {
-    var x10 = x1 - x0, y10 = y1 - y0,
-        x32 = x3 - x2, y32 = y3 - y2,
-        t = y32 * x10 - x32 * y10;
-    if (t * t < epsilon$1) return;
-    t = (x32 * (y0 - y2) - y32 * (x0 - x2)) / t;
-    return [x0 + t * x10, y0 + t * y10];
-  }
-
-  // Compute perpendicular offset line of length rc.
-  // http://mathworld.wolfram.com/Circle-LineIntersection.html
-  function cornerTangents(x0, y0, x1, y1, r1, rc, cw) {
-    var x01 = x0 - x1,
-        y01 = y0 - y1,
-        lo = (cw ? rc : -rc) / sqrt(x01 * x01 + y01 * y01),
-        ox = lo * y01,
-        oy = -lo * x01,
-        x11 = x0 + ox,
-        y11 = y0 + oy,
-        x10 = x1 + ox,
-        y10 = y1 + oy,
-        x00 = (x11 + x10) / 2,
-        y00 = (y11 + y10) / 2,
-        dx = x10 - x11,
-        dy = y10 - y11,
-        d2 = dx * dx + dy * dy,
-        r = r1 - rc,
-        D = x11 * y10 - x10 * y11,
-        d = (dy < 0 ? -1 : 1) * sqrt(max(0, r * r * d2 - D * D)),
-        cx0 = (D * dy - dx * d) / d2,
-        cy0 = (-D * dx - dy * d) / d2,
-        cx1 = (D * dy + dx * d) / d2,
-        cy1 = (-D * dx + dy * d) / d2,
-        dx0 = cx0 - x00,
-        dy0 = cy0 - y00,
-        dx1 = cx1 - x00,
-        dy1 = cy1 - y00;
-
-    // Pick the closer of the two intersection points.
-    // TODO Is there a faster way to determine which intersection to use?
-    if (dx0 * dx0 + dy0 * dy0 > dx1 * dx1 + dy1 * dy1) cx0 = cx1, cy0 = cy1;
-
-    return {
-      cx: cx0,
-      cy: cy0,
-      x01: -ox,
-      y01: -oy,
-      x11: cx0 * (r1 / r - 1),
-      y11: cy0 * (r1 / r - 1)
-    };
-  }
-
-  function d3arc() {
-    var innerRadius = arcInnerRadius,
-        outerRadius = arcOuterRadius,
-        cornerRadius = constant$1(0),
-        padRadius = null,
-        startAngle = arcStartAngle,
-        endAngle = arcEndAngle,
-        padAngle = arcPadAngle,
-        context = null;
-
-    function arc() {
-      var buffer,
-          r,
-          r0 = +innerRadius.apply(this, arguments),
-          r1 = +outerRadius.apply(this, arguments),
-          a0 = startAngle.apply(this, arguments) - halfPi,
-          a1 = endAngle.apply(this, arguments) - halfPi,
-          da = abs(a1 - a0),
-          cw = a1 > a0;
-
-      if (!context) context = buffer = path();
-
-      // Ensure that the outer radius is always larger than the inner radius.
-      if (r1 < r0) r = r1, r1 = r0, r0 = r;
-
-      // Is it a point?
-      if (!(r1 > epsilon$1)) context.moveTo(0, 0);
-
-      // Or is it a circle or annulus?
-      else if (da > tau$1 - epsilon$1) {
-        context.moveTo(r1 * cos(a0), r1 * sin(a0));
-        context.arc(0, 0, r1, a0, a1, !cw);
-        if (r0 > epsilon$1) {
-          context.moveTo(r0 * cos(a1), r0 * sin(a1));
-          context.arc(0, 0, r0, a1, a0, cw);
-        }
-      }
-
-      // Or is it a circular or annular sector?
-      else {
-        var a01 = a0,
-            a11 = a1,
-            a00 = a0,
-            a10 = a1,
-            da0 = da,
-            da1 = da,
-            ap = padAngle.apply(this, arguments) / 2,
-            rp = (ap > epsilon$1) && (padRadius ? +padRadius.apply(this, arguments) : sqrt(r0 * r0 + r1 * r1)),
-            rc = min(abs(r1 - r0) / 2, +cornerRadius.apply(this, arguments)),
-            rc0 = rc,
-            rc1 = rc,
-            t0,
-            t1;
-
-        // Apply padding? Note that since r1 ≥ r0, da1 ≥ da0.
-        if (rp > epsilon$1) {
-          var p0 = asin(rp / r0 * sin(ap)),
-              p1 = asin(rp / r1 * sin(ap));
-          if ((da0 -= p0 * 2) > epsilon$1) p0 *= (cw ? 1 : -1), a00 += p0, a10 -= p0;
-          else da0 = 0, a00 = a10 = (a0 + a1) / 2;
-          if ((da1 -= p1 * 2) > epsilon$1) p1 *= (cw ? 1 : -1), a01 += p1, a11 -= p1;
-          else da1 = 0, a01 = a11 = (a0 + a1) / 2;
-        }
-
-        var x01 = r1 * cos(a01),
-            y01 = r1 * sin(a01),
-            x10 = r0 * cos(a10),
-            y10 = r0 * sin(a10);
-
-        // Apply rounded corners?
-        if (rc > epsilon$1) {
-          var x11 = r1 * cos(a11),
-              y11 = r1 * sin(a11),
-              x00 = r0 * cos(a00),
-              y00 = r0 * sin(a00),
-              oc;
-
-          // Restrict the corner radius according to the sector angle.
-          if (da < pi$1 && (oc = intersect(x01, y01, x00, y00, x11, y11, x10, y10))) {
-            var ax = x01 - oc[0],
-                ay = y01 - oc[1],
-                bx = x11 - oc[0],
-                by = y11 - oc[1],
-                kc = 1 / sin(acos((ax * bx + ay * by) / (sqrt(ax * ax + ay * ay) * sqrt(bx * bx + by * by))) / 2),
-                lc = sqrt(oc[0] * oc[0] + oc[1] * oc[1]);
-            rc0 = min(rc, (r0 - lc) / (kc - 1));
-            rc1 = min(rc, (r1 - lc) / (kc + 1));
-          }
-        }
-
-        // Is the sector collapsed to a line?
-        if (!(da1 > epsilon$1)) context.moveTo(x01, y01);
-
-        // Does the sector’s outer ring have rounded corners?
-        else if (rc1 > epsilon$1) {
-          t0 = cornerTangents(x00, y00, x01, y01, r1, rc1, cw);
-          t1 = cornerTangents(x11, y11, x10, y10, r1, rc1, cw);
-
-          context.moveTo(t0.cx + t0.x01, t0.cy + t0.y01);
-
-          // Have the corners merged?
-          if (rc1 < rc) context.arc(t0.cx, t0.cy, rc1, atan2(t0.y01, t0.x01), atan2(t1.y01, t1.x01), !cw);
-
-          // Otherwise, draw the two corners and the ring.
-          else {
-            context.arc(t0.cx, t0.cy, rc1, atan2(t0.y01, t0.x01), atan2(t0.y11, t0.x11), !cw);
-            context.arc(0, 0, r1, atan2(t0.cy + t0.y11, t0.cx + t0.x11), atan2(t1.cy + t1.y11, t1.cx + t1.x11), !cw);
-            context.arc(t1.cx, t1.cy, rc1, atan2(t1.y11, t1.x11), atan2(t1.y01, t1.x01), !cw);
-          }
-        }
-
-        // Or is the outer ring just a circular arc?
-        else context.moveTo(x01, y01), context.arc(0, 0, r1, a01, a11, !cw);
-
-        // Is there no inner ring, and it’s a circular sector?
-        // Or perhaps it’s an annular sector collapsed due to padding?
-        if (!(r0 > epsilon$1) || !(da0 > epsilon$1)) context.lineTo(x10, y10);
-
-        // Does the sector’s inner ring (or point) have rounded corners?
-        else if (rc0 > epsilon$1) {
-          t0 = cornerTangents(x10, y10, x11, y11, r0, -rc0, cw);
-          t1 = cornerTangents(x01, y01, x00, y00, r0, -rc0, cw);
-
-          context.lineTo(t0.cx + t0.x01, t0.cy + t0.y01);
-
-          // Have the corners merged?
-          if (rc0 < rc) context.arc(t0.cx, t0.cy, rc0, atan2(t0.y01, t0.x01), atan2(t1.y01, t1.x01), !cw);
-
-          // Otherwise, draw the two corners and the ring.
-          else {
-            context.arc(t0.cx, t0.cy, rc0, atan2(t0.y01, t0.x01), atan2(t0.y11, t0.x11), !cw);
-            context.arc(0, 0, r0, atan2(t0.cy + t0.y11, t0.cx + t0.x11), atan2(t1.cy + t1.y11, t1.cx + t1.x11), cw);
-            context.arc(t1.cx, t1.cy, rc0, atan2(t1.y11, t1.x11), atan2(t1.y01, t1.x01), !cw);
-          }
-        }
-
-        // Or is the inner ring just a circular arc?
-        else context.arc(0, 0, r0, a10, a00, cw);
-      }
-
-      context.closePath();
-
-      if (buffer) return context = null, buffer + "" || null;
+  function format(value, options) {
+    if (!Number.isFinite(value)) {
+      return null;
     }
 
-    arc.centroid = function() {
-      var r = (+innerRadius.apply(this, arguments) + +outerRadius.apply(this, arguments)) / 2,
-          a = (+startAngle.apply(this, arguments) + +endAngle.apply(this, arguments)) / 2 - pi$1 / 2;
-      return [cos(a) * r, sin(a) * r];
-    };
+    var mag = Math.abs(value);
+    var thousandsSeparator = (options && options.thousandsSeparator) || '';
+    var unitSeparator = (options && options.unitSeparator) || '';
+    var decimalPlaces = (options && options.decimalPlaces !== undefined) ? options.decimalPlaces : 2;
+    var fixedDecimals = Boolean(options && options.fixedDecimals);
+    var unit = (options && options.unit) || '';
 
-    arc.innerRadius = function(_) {
-      return arguments.length ? (innerRadius = typeof _ === "function" ? _ : constant$1(+_), arc) : innerRadius;
-    };
-
-    arc.outerRadius = function(_) {
-      return arguments.length ? (outerRadius = typeof _ === "function" ? _ : constant$1(+_), arc) : outerRadius;
-    };
-
-    arc.cornerRadius = function(_) {
-      return arguments.length ? (cornerRadius = typeof _ === "function" ? _ : constant$1(+_), arc) : cornerRadius;
-    };
-
-    arc.padRadius = function(_) {
-      return arguments.length ? (padRadius = _ == null ? null : typeof _ === "function" ? _ : constant$1(+_), arc) : padRadius;
-    };
-
-    arc.startAngle = function(_) {
-      return arguments.length ? (startAngle = typeof _ === "function" ? _ : constant$1(+_), arc) : startAngle;
-    };
-
-    arc.endAngle = function(_) {
-      return arguments.length ? (endAngle = typeof _ === "function" ? _ : constant$1(+_), arc) : endAngle;
-    };
-
-    arc.padAngle = function(_) {
-      return arguments.length ? (padAngle = typeof _ === "function" ? _ : constant$1(+_), arc) : padAngle;
-    };
-
-    arc.context = function(_) {
-      return arguments.length ? ((context = _ == null ? null : _), arc) : context;
-    };
-
-    return arc;
-  }
-
-  function sign(x) {
-    return x < 0 ? -1 : 1;
-  }
-
-  // Calculate the slopes of the tangents (Hermite-type interpolation) based on
-  // the following paper: Steffen, M. 1990. A Simple Method for Monotonic
-  // Interpolation in One Dimension. Astronomy and Astrophysics, Vol. 239, NO.
-  // NOV(II), P. 443, 1990.
-  function slope3(that, x2, y2) {
-    var h0 = that._x1 - that._x0,
-        h1 = x2 - that._x1,
-        s0 = (that._y1 - that._y0) / (h0 || h1 < 0 && -0),
-        s1 = (y2 - that._y1) / (h1 || h0 < 0 && -0),
-        p = (s0 * h1 + s1 * h0) / (h0 + h1);
-    return (sign(s0) + sign(s1)) * Math.min(Math.abs(s0), Math.abs(s1), 0.5 * Math.abs(p)) || 0;
-  }
-
-  // Calculate a one-sided slope.
-  function slope2(that, t) {
-    var h = that._x1 - that._x0;
-    return h ? (3 * (that._y1 - that._y0) / h - t) / 2 : t;
-  }
-
-  // According to https://en.wikipedia.org/wiki/Cubic_Hermite_spline#Representations
-  // "you can express cubic Hermite interpolation in terms of cubic Bézier curves
-  // with respect to the four values p0, p0 + m0 / 3, p1 - m1 / 3, p1".
-  function point(that, t0, t1) {
-    var x0 = that._x0,
-        y0 = that._y0,
-        x1 = that._x1,
-        y1 = that._y1,
-        dx = (x1 - x0) / 3;
-    that._context.bezierCurveTo(x0 + dx, y0 + dx * t0, x1 - dx, y1 - dx * t1, x1, y1);
-  }
-
-  function MonotoneX(context) {
-    this._context = context;
-  }
-
-  MonotoneX.prototype = {
-    areaStart: function() {
-      this._line = 0;
-    },
-    areaEnd: function() {
-      this._line = NaN;
-    },
-    lineStart: function() {
-      this._x0 = this._x1 =
-      this._y0 = this._y1 =
-      this._t0 = NaN;
-      this._point = 0;
-    },
-    lineEnd: function() {
-      switch (this._point) {
-        case 2: this._context.lineTo(this._x1, this._y1); break;
-        case 3: point(this, this._t0, slope2(this, this._t0)); break;
+    if (!unit || !map[unit.toLowerCase()]) {
+      if (mag >= map.pb) {
+        unit = 'PB';
+      } else if (mag >= map.tb) {
+        unit = 'TB';
+      } else if (mag >= map.gb) {
+        unit = 'GB';
+      } else if (mag >= map.mb) {
+        unit = 'MB';
+      } else if (mag >= map.kb) {
+        unit = 'KB';
+      } else {
+        unit = 'B';
       }
-      if (this._line || (this._line !== 0 && this._point === 1)) this._context.closePath();
-      this._line = 1 - this._line;
-    },
-    point: function(x, y) {
-      var t1 = NaN;
-
-      x = +x, y = +y;
-      if (x === this._x1 && y === this._y1) return; // Ignore coincident points.
-      switch (this._point) {
-        case 0: this._point = 1; this._line ? this._context.lineTo(x, y) : this._context.moveTo(x, y); break;
-        case 1: this._point = 2; break;
-        case 2: this._point = 3; point(this, slope2(this, t1 = slope3(this, x, y)), t1); break;
-        default: point(this, this._t0, t1 = slope3(this, x, y)); break;
-      }
-
-      this._x0 = this._x1, this._x1 = x;
-      this._y0 = this._y1, this._y1 = y;
-      this._t0 = t1;
-    }
-  };
-
-  function MonotoneY(context) {
-    this._context = new ReflectContext(context);
-  }
-
-  (MonotoneY.prototype = Object.create(MonotoneX.prototype)).point = function(x, y) {
-    MonotoneX.prototype.point.call(this, y, x);
-  };
-
-  function ReflectContext(context) {
-    this._context = context;
-  }
-
-  ReflectContext.prototype = {
-    moveTo: function(x, y) { this._context.moveTo(y, x); },
-    closePath: function() { this._context.closePath(); },
-    lineTo: function(x, y) { this._context.lineTo(y, x); },
-    bezierCurveTo: function(x1, y1, x2, y2, x, y) { this._context.bezierCurveTo(y1, x1, y2, x2, y, x); }
-  };
-
-  function ascending$1(a, b) {
-    return a < b ? -1 : a > b ? 1 : a >= b ? 0 : NaN;
-  }
-
-  function bisector(compare) {
-    if (compare.length === 1) compare = ascendingComparator(compare);
-    return {
-      left: function(a, x, lo, hi) {
-        if (lo == null) lo = 0;
-        if (hi == null) hi = a.length;
-        while (lo < hi) {
-          var mid = lo + hi >>> 1;
-          if (compare(a[mid], x) < 0) lo = mid + 1;
-          else hi = mid;
-        }
-        return lo;
-      },
-      right: function(a, x, lo, hi) {
-        if (lo == null) lo = 0;
-        if (hi == null) hi = a.length;
-        while (lo < hi) {
-          var mid = lo + hi >>> 1;
-          if (compare(a[mid], x) > 0) hi = mid;
-          else lo = mid + 1;
-        }
-        return lo;
-      }
-    };
-  }
-
-  function ascendingComparator(f) {
-    return function(d, x) {
-      return ascending$1(f(d), x);
-    };
-  }
-
-  var ascendingBisect = bisector(ascending$1);
-  var bisectRight = ascendingBisect.right;
-
-  var e10 = Math.sqrt(50),
-      e5 = Math.sqrt(10),
-      e2 = Math.sqrt(2);
-
-  function ticks(start, stop, count) {
-    var reverse,
-        i = -1,
-        n,
-        ticks,
-        step;
-
-    stop = +stop, start = +start, count = +count;
-    if (start === stop && count > 0) return [start];
-    if (reverse = stop < start) n = start, start = stop, stop = n;
-    if ((step = tickIncrement(start, stop, count)) === 0 || !isFinite(step)) return [];
-
-    if (step > 0) {
-      start = Math.ceil(start / step);
-      stop = Math.floor(stop / step);
-      ticks = new Array(n = Math.ceil(stop - start + 1));
-      while (++i < n) ticks[i] = (start + i) * step;
-    } else {
-      start = Math.floor(start * step);
-      stop = Math.ceil(stop * step);
-      ticks = new Array(n = Math.ceil(start - stop + 1));
-      while (++i < n) ticks[i] = (start - i) / step;
     }
 
-    if (reverse) ticks.reverse();
+    var val = value / map[unit.toLowerCase()];
+    var str = val.toFixed(decimalPlaces);
 
-    return ticks;
+    if (!fixedDecimals) {
+      str = str.replace(formatDecimalsRegExp, '$1');
+    }
+
+    if (thousandsSeparator) {
+      str = str.replace(formatThousandsRegExp, thousandsSeparator);
+    }
+
+    return str + unitSeparator + unit;
   }
 
-  function tickIncrement(start, stop, count) {
-    var step = (stop - start) / Math.max(0, count),
-        power = Math.floor(Math.log(step) / Math.LN10),
-        error = step / Math.pow(10, power);
-    return power >= 0
-        ? (error >= e10 ? 10 : error >= e5 ? 5 : error >= e2 ? 2 : 1) * Math.pow(10, power)
-        : -Math.pow(10, -power) / (error >= e10 ? 10 : error >= e5 ? 5 : error >= e2 ? 2 : 1);
+  let count$1 = 0;
+
+  class Id {
+    constructor(id) {
+      this._id = id;
+      this._href = createUrl({ hash: id }).href;
+    }
+
+    get id() {
+      return this._id;
+    }
+
+    get href() {
+      return this._href;
+    }
+
+    toString() {
+      return `url(${this.href})`;
+    }
   }
 
-  function tickStep(start, stop, count) {
-    var step0 = Math.abs(stop - start) / Math.max(0, count),
-        step1 = Math.pow(10, Math.floor(Math.log(step0) / Math.LN10)),
-        error = step0 / step1;
-    if (error >= e10) step1 *= 10;
-    else if (error >= e5) step1 *= 5;
-    else if (error >= e2) step1 *= 2;
-    return stop < start ? -step1 : step1;
+  function uid(name) {
+    count$1 += 1;
+    const id = ["O", name, count$1].filter(Boolean).join("-");
+    return new Id(id);
+  }
+
+  function createUrl(options = {}) {
+    const url = new URL(window.location);
+    return Object.assign(url, options);
   }
 
   function initRange(domain, range) {
@@ -1915,6 +1655,24 @@ rect {
       case 0: break;
       case 1: this.range(domain); break;
       default: this.range(range).domain(domain); break;
+    }
+    return this;
+  }
+
+  function initInterpolator(domain, interpolator) {
+    switch (arguments.length) {
+      case 0: break;
+      case 1: {
+        if (typeof domain === "function") this.interpolator(domain);
+        else this.range(domain);
+        break;
+      }
+      default: {
+        this.domain(domain);
+        if (typeof interpolator === "function") this.interpolator(interpolator);
+        else this.range(interpolator);
+        break;
+      }
     }
     return this;
   }
@@ -2300,6 +2058,26 @@ rect {
         : m1) * 255;
   }
 
+  function basis(t1, v0, v1, v2, v3) {
+    var t2 = t1 * t1, t3 = t2 * t1;
+    return ((1 - 3 * t1 + 3 * t2 - t3) * v0
+        + (4 - 6 * t2 + 3 * t3) * v1
+        + (1 + 3 * t1 + 3 * t2 - 3 * t3) * v2
+        + t3 * v3) / 6;
+  }
+
+  function basis$1(values) {
+    var n = values.length - 1;
+    return function(t) {
+      var i = t <= 0 ? (t = 0) : t >= 1 ? (t = 1, n - 1) : Math.floor(t * n),
+          v1 = values[i],
+          v2 = values[i + 1],
+          v0 = i > 0 ? values[i - 1] : 2 * v1 - v2,
+          v3 = i < n - 1 ? values[i + 2] : 2 * v2 - v1;
+      return basis((t - i / n) * n, v0, v1, v2, v3);
+    };
+  }
+
   function constant$2(x) {
     return function() {
       return x;
@@ -2351,7 +2129,50 @@ rect {
     return rgb$1;
   })(1);
 
-  function array(a, b) {
+  function rgbSpline(spline) {
+    return function(colors) {
+      var n = colors.length,
+          r = new Array(n),
+          g = new Array(n),
+          b = new Array(n),
+          i, color;
+      for (i = 0; i < n; ++i) {
+        color = rgb(colors[i]);
+        r[i] = color.r || 0;
+        g[i] = color.g || 0;
+        b[i] = color.b || 0;
+      }
+      r = spline(r);
+      g = spline(g);
+      b = spline(b);
+      color.opacity = 1;
+      return function(t) {
+        color.r = r(t);
+        color.g = g(t);
+        color.b = b(t);
+        return color + "";
+      };
+    };
+  }
+
+  var rgbBasis = rgbSpline(basis$1);
+
+  function numberArray(a, b) {
+    if (!b) b = [];
+    var n = a ? Math.min(b.length, a.length) : 0,
+        c = b.slice(),
+        i;
+    return function(t) {
+      for (i = 0; i < n; ++i) c[i] = a[i] * (1 - t) + b[i] * t;
+      return c;
+    };
+  }
+
+  function isNumberArray(x) {
+    return ArrayBuffer.isView(x) && !(x instanceof DataView);
+  }
+
+  function genericArray(a, b) {
     var nb = b ? b.length : 0,
         na = a ? Math.min(nb, a.length) : 0,
         x = new Array(na),
@@ -2369,14 +2190,14 @@ rect {
 
   function date(a, b) {
     var d = new Date;
-    return a = +a, b -= a, function(t) {
-      return d.setTime(a + b * t), d;
+    return a = +a, b = +b, function(t) {
+      return d.setTime(a * (1 - t) + b * t), d;
     };
   }
 
   function interpolateNumber(a, b) {
-    return a = +a, b -= a, function(t) {
-      return a + b * t;
+    return a = +a, b = +b, function(t) {
+      return a * (1 - t) + b * t;
     };
   }
 
@@ -2472,14 +2293,15 @@ rect {
         : t === "string" ? ((c = color(b)) ? (b = c, rgb$1) : string)
         : b instanceof color ? rgb$1
         : b instanceof Date ? date
-        : Array.isArray(b) ? array
+        : isNumberArray(b) ? numberArray
+        : Array.isArray(b) ? genericArray
         : typeof b.valueOf !== "function" && typeof b.toString !== "function" || isNaN(b) ? object
         : interpolateNumber)(a, b);
   }
 
   function interpolateRound(a, b) {
-    return a = +a, b -= a, function(t) {
-      return Math.round(a + b * t);
+    return a = +a, b = +b, function(t) {
+      return Math.round(a * (1 - t) + b * t);
     };
   }
 
@@ -2495,7 +2317,7 @@ rect {
 
   var unit = [0, 1];
 
-  function identity(x) {
+  function identity$1(x) {
     return x;
   }
 
@@ -2559,14 +2381,14 @@ rect {
         transform,
         untransform,
         unknown,
-        clamp = identity,
+        clamp = identity$1,
         piecewise,
         output,
         input;
 
     function rescale() {
       var n = Math.min(domain.length, range.length);
-      if (clamp !== identity) clamp = clamper(domain[0], domain[n - 1]);
+      if (clamp !== identity$1) clamp = clamper(domain[0], domain[n - 1]);
       piecewise = n > 2 ? polymap : bimap;
       output = input = null;
       return scale;
@@ -2593,7 +2415,7 @@ rect {
     };
 
     scale.clamp = function(_) {
-      return arguments.length ? (clamp = _ ? true : identity, rescale()) : clamp !== identity;
+      return arguments.length ? (clamp = _ ? true : identity$1, rescale()) : clamp !== identity$1;
     };
 
     scale.interpolate = function(_) {
@@ -2611,7 +2433,7 @@ rect {
   }
 
   function continuous() {
-    return transformer()(identity, identity);
+    return transformer()(identity$1, identity$1);
   }
 
   // Computes the decimal coefficient and exponent of the specified number x with
@@ -2761,19 +2583,19 @@ rect {
     "x": function(x) { return Math.round(x).toString(16); }
   };
 
-  function identity$1(x) {
+  function identity$2(x) {
     return x;
   }
 
-  var map = Array.prototype.map,
+  var map$1 = Array.prototype.map,
       prefixes = ["y","z","a","f","p","n","µ","m","","k","M","G","T","P","E","Z","Y"];
 
   function formatLocale(locale) {
-    var group = locale.grouping === undefined || locale.thousands === undefined ? identity$1 : formatGroup(map.call(locale.grouping, Number), locale.thousands + ""),
+    var group = locale.grouping === undefined || locale.thousands === undefined ? identity$2 : formatGroup(map$1.call(locale.grouping, Number), locale.thousands + ""),
         currencyPrefix = locale.currency === undefined ? "" : locale.currency[0] + "",
         currencySuffix = locale.currency === undefined ? "" : locale.currency[1] + "",
         decimal = locale.decimal === undefined ? "." : locale.decimal + "",
-        numerals = locale.numerals === undefined ? identity$1 : formatNumerals(map.call(locale.numerals, String)),
+        numerals = locale.numerals === undefined ? identity$2 : formatNumerals(map$1.call(locale.numerals, String)),
         percent = locale.percent === undefined ? "%" : locale.percent + "",
         minus = locale.minus === undefined ? "-" : locale.minus + "",
         nan = locale.nan === undefined ? "NaN" : locale.nan + "";
@@ -2905,7 +2727,7 @@ rect {
   }
 
   var locale;
-  var format;
+  var format$1;
   var formatPrefix;
 
   defaultLocale({
@@ -2918,7 +2740,7 @@ rect {
 
   function defaultLocale(definition) {
     locale = formatLocale(definition);
-    format = locale.format;
+    format$1 = locale.format;
     formatPrefix = locale.formatPrefix;
     return locale;
   }
@@ -2960,7 +2782,7 @@ rect {
         break;
       }
     }
-    return format(specifier);
+    return format$1(specifier);
   }
 
   function linearish(scale) {
@@ -3031,263 +2853,508 @@ rect {
     return linearish(scale);
   }
 
-  function transformPow(exponent) {
-    return function(x) {
-      return x < 0 ? -Math.pow(-x, exponent) : Math.pow(x, exponent);
-    };
-  }
+  function transformer$1() {
+    var x0 = 0,
+        x1 = 1,
+        t0,
+        t1,
+        k10,
+        transform,
+        interpolator = identity$1,
+        clamp = false,
+        unknown;
 
-  function transformSqrt(x) {
-    return x < 0 ? -Math.sqrt(-x) : Math.sqrt(x);
-  }
-
-  function transformSquare(x) {
-    return x < 0 ? -x * x : x * x;
-  }
-
-  function powish(transform) {
-    var scale = transform(identity, identity),
-        exponent = 1;
-
-    function rescale() {
-      return exponent === 1 ? transform(identity, identity)
-          : exponent === 0.5 ? transform(transformSqrt, transformSquare)
-          : transform(transformPow(exponent), transformPow(1 / exponent));
+    function scale(x) {
+      return isNaN(x = +x) ? unknown : interpolator(k10 === 0 ? 0.5 : (x = (transform(x) - t0) * k10, clamp ? Math.max(0, Math.min(1, x)) : x));
     }
 
-    scale.exponent = function(_) {
-      return arguments.length ? (exponent = +_, rescale()) : exponent;
+    scale.domain = function(_) {
+      return arguments.length ? ([x0, x1] = _, t0 = transform(x0 = +x0), t1 = transform(x1 = +x1), k10 = t0 === t1 ? 0 : 1 / (t1 - t0), scale) : [x0, x1];
     };
 
-    return linearish(scale);
+    scale.clamp = function(_) {
+      return arguments.length ? (clamp = !!_, scale) : clamp;
+    };
+
+    scale.interpolator = function(_) {
+      return arguments.length ? (interpolator = _, scale) : interpolator;
+    };
+
+    function range(interpolate) {
+      return function(_) {
+        var r0, r1;
+        return arguments.length ? ([r0, r1] = _, interpolator = interpolate(r0, r1), scale) : [interpolator(0), interpolator(1)];
+      };
+    }
+
+    scale.range = range(interpolate);
+
+    scale.rangeRound = range(interpolateRound);
+
+    scale.unknown = function(_) {
+      return arguments.length ? (unknown = _, scale) : unknown;
+    };
+
+    return function(t) {
+      transform = t, t0 = t(x0), t1 = t(x1), k10 = t0 === t1 ? 0 : 1 / (t1 - t0);
+      return scale;
+    };
   }
 
-  function pow() {
-    var scale = powish(transformer());
+  function copy$1(source, target) {
+    return target
+        .domain(source.domain())
+        .interpolator(source.interpolator())
+        .clamp(source.clamp())
+        .unknown(source.unknown());
+  }
+
+  function sequential() {
+    var scale = linearish(transformer$1()(identity$1));
 
     scale.copy = function() {
-      return copy(scale, pow()).exponent(scale.exponent());
+      return copy$1(scale, sequential());
     };
 
-    initRange.apply(scale, arguments);
-
-    return scale;
+    return initInterpolator.apply(scale, arguments);
   }
 
-  function sqrt$1() {
-    return pow.apply(null, arguments).exponent(0.5);
+  function colors(specifier) {
+    var n = specifier.length / 6 | 0, colors = new Array(n), i = 0;
+    while (i < n) colors[i] = "#" + specifier.slice(i * 6, ++i * 6);
+    return colors;
   }
 
-  /*!
-   * bytes
-   * Copyright(c) 2012-2014 TJ Holowaychuk
-   * Copyright(c) 2015 Jed Watson
-   * MIT Licensed
-   */
-  var format_1 = format$1;
+  function ramp(scheme) {
+    return rgbBasis(scheme[scheme.length - 1]);
+  }
 
-  /**
-   * Module variables.
-   * @private
-   */
+  var scheme = new Array(3).concat(
+    "fc8d59ffffbf99d594",
+    "d7191cfdae61abdda42b83ba",
+    "d7191cfdae61ffffbfabdda42b83ba",
+    "d53e4ffc8d59fee08be6f59899d5943288bd",
+    "d53e4ffc8d59fee08bffffbfe6f59899d5943288bd",
+    "d53e4ff46d43fdae61fee08be6f598abdda466c2a53288bd",
+    "d53e4ff46d43fdae61fee08bffffbfe6f598abdda466c2a53288bd",
+    "9e0142d53e4ff46d43fdae61fee08be6f598abdda466c2a53288bd5e4fa2",
+    "9e0142d53e4ff46d43fdae61fee08bffffbfe6f598abdda466c2a53288bd5e4fa2"
+  ).map(colors);
 
-  var formatThousandsRegExp = /\B(?=(\d{3})+(?!\d))/g;
+  var colorRainbow = ramp(scheme);
 
-  var formatDecimalsRegExp = /(?:\.0*|(\.[^0]+)0+)$/;
+  const COLOR_BASE = "#cecece";
 
-  var map$1 = {
-    b:  1,
-    kb: 1 << 10,
-    mb: 1 << 20,
-    gb: 1 << 30,
-    tb: Math.pow(1024, 4),
-    pb: Math.pow(1024, 5),
-  };
+  // https://www.w3.org/TR/WCAG20/#relativeluminancedef
+  const rc = 0.2126;
+  const gc = 0.7152;
+  const bc = 0.0722;
+  // low-gamma adjust coefficient
+  const lowc = 1 / 12.92;
 
-  /**
-   * Format the given value in bytes into a string.
-   *
-   * If the value is negative, it is kept as such. If it is a float,
-   * it is rounded.
-   *
-   * @param {number} value
-   * @param {object} [options]
-   * @param {number} [options.decimalPlaces=2]
-   * @param {number} [options.fixedDecimals=false]
-   * @param {string} [options.thousandsSeparator=]
-   * @param {string} [options.unit=]
-   * @param {string} [options.unitSeparator=]
-   *
-   * @returns {string|null}
-   * @public
-   */
+  function adjustGamma(_) {
+    return Math.pow((_ + 0.055) / 1.055, 2.4);
+  }
 
-  function format$1(value, options) {
-    if (!Number.isFinite(value)) {
-      return null;
+  function relativeLuminance(o) {
+    const rsrgb = o.r / 255;
+    const gsrgb = o.g / 255;
+    const bsrgb = o.b / 255;
+
+    const r = rsrgb <= 0.03928 ? rsrgb * lowc : adjustGamma(rsrgb);
+    const g = gsrgb <= 0.03928 ? gsrgb * lowc : adjustGamma(gsrgb);
+    const b = bsrgb <= 0.03928 ? bsrgb * lowc : adjustGamma(bsrgb);
+
+    return r * rc + g * gc + b * bc;
+  }
+
+  const createRainbowColor = root => {
+    const colorParentMap = new Map();
+    colorParentMap.set(root, COLOR_BASE);
+
+    if (root.children != null) {
+      const colorScale = sequential(
+        [0, root.children.length - 1],
+        colorRainbow
+      );
+      root.children.forEach((c, id) => {
+        colorParentMap.set(c, colorScale(id));
+      });
     }
 
-    var mag = Math.abs(value);
-    var thousandsSeparator = (options && options.thousandsSeparator) || '';
-    var unitSeparator = (options && options.unitSeparator) || '';
-    var decimalPlaces = (options && options.decimalPlaces !== undefined) ? options.decimalPlaces : 2;
-    var fixedDecimals = Boolean(options && options.fixedDecimals);
-    var unit = (options && options.unit) || '';
+    const colorMap = new Map();
 
-    if (!unit || !map$1[unit.toLowerCase()]) {
-      if (mag >= map$1.pb) {
-        unit = 'PB';
-      } else if (mag >= map$1.tb) {
-        unit = 'TB';
-      } else if (mag >= map$1.gb) {
-        unit = 'GB';
-      } else if (mag >= map$1.mb) {
-        unit = 'MB';
-      } else if (mag >= map$1.kb) {
-        unit = 'KB';
+    const lightScale = linear$1()
+      .domain([0, root.height])
+      .range([0.8, 0.1]);
+
+    const getBackgroundColor = node => {
+      const parents = node.ancestors();
+      const colorStr =
+        parents.length === 1
+          ? colorParentMap.get(parents[0])
+          : colorParentMap.get(parents[parents.length - 2]);
+
+      const hslColor = hsl(colorStr);
+      hslColor.l = lightScale(node.depth);
+
+      return hslColor;
+    };
+
+    return node => {
+      if (!colorMap.has(node)) {
+        const backgroundColor = getBackgroundColor(node);
+        const l = relativeLuminance(backgroundColor.rgb());
+        const fontColor = l > 0.179 ? "#000" : "#fff";
+        colorMap.set(node, { backgroundColor, fontColor });
+      }
+
+      return colorMap.get(node);
+    };
+  };
+
+  const getNodePathTree = d =>
+    d
+      .ancestors()
+      .reverse()
+      .map(d => d.data.name)
+      .join("/");
+
+  const getNodeSizeTree = d => d.value;
+
+  const getNodeUidTree = d => d.data.uid;
+
+  class Tooltip {
+    constructor(container) {
+      this.tooltip = container
+        .append("div")
+        .style("opacity", 0)
+        .attr("class", "tooltip");
+
+      this.container = container;
+
+      this.onMouseLeave = this.onMouseLeave.bind(this);
+      this.onMouseOver = this.onMouseOver.bind(this);
+      this.onMouseMove = this.onMouseMove.bind(this);
+    }
+
+    onMouseOver() {
+      this.tooltip.style("opacity", 1);
+    }
+
+    onMouseMove(event, data) {
+      const { html } = this.tooltipContentCache.get(data);
+
+      this.tooltip.html(html);
+
+      const [x, y] = pointer(event, this.container.node());
+
+      const tooltipBox = this.tooltip.node().getBoundingClientRect();
+      const containerBox = this.container.node().getBoundingClientRect();
+
+      const availableWidthRight = containerBox.width - x;
+      const availableHeightBottom = containerBox.height - y;
+
+      const positionStyles = [];
+      const offsetX = 10;
+      const offsetY = 10;
+      if (availableHeightBottom >= tooltipBox.height + offsetY) {
+        positionStyles.push(["top", y + offsetY], ["bottom", null]);
       } else {
-        unit = 'B';
+        positionStyles.push(
+          ["top", null],
+          ["bottom", availableHeightBottom + offsetY]
+        );
+      }
+      if (availableWidthRight >= tooltipBox.width + offsetX) {
+        positionStyles.push(["left", x + offsetX], ["right", null]);
+      } else {
+        positionStyles.push(
+          ["left", null],
+          ["right", availableWidthRight + offsetX]
+        );
+      }
+
+      for (const [pos, offset] of positionStyles) {
+        this.tooltip.style(
+          pos,
+          typeof offset === "number" ? offset + "px" : offset
+        );
       }
     }
 
-    var val = value / map$1[unit.toLowerCase()];
-    var str = val.toFixed(decimalPlaces);
-
-    if (!fixedDecimals) {
-      str = str.replace(formatDecimalsRegExp, '$1');
+    onMouseLeave() {
+      this.tooltip.style("opacity", 0);
     }
 
-    if (thousandsSeparator) {
-      str = str.replace(formatThousandsRegExp, thousandsSeparator);
-    }
+    buildCache(
+      contentNodes,
+      {
+        totalSize,
+        getNodeSize = getNodeSizeTree,
+        getNodePath = getNodePathTree,
+        getNodeUid = getNodeUidTree,
+        nodes,
+        links
+      }
+    ) {
+      this.tooltipContentCache = new Map();
 
-    return str + unitSeparator + unit;
-  }
+      const importedByCache = new Map();
+      const importedCache = new Map();
 
-  function getAncestors(node) {
-    const parents = [];
-    while (node != null) {
-      parents.push(node);
-      node = node.parent;
-    }
-    return parents;
-  }
-
-  function color$1(node) {
-    if (node.children && node.children.length) {
-      const parents = getAncestors(node);
-      const hasNodeModules = !!parents.find(n => {
-        return n.data.name === "node_modules";
-      });
-      return hasNodeModules ? "#599e59" : "#487ea4";
-    } else {
-      return "#db7100";
-    }
-  }
-
-  const WIDTH = window.chartParameters.width || 700;
-  const HEIGHT = window.chartParameters.height || 700;
-  const RADIUS = Math.min(WIDTH, HEIGHT) / 2 - 10;
-
-  const x = linear$1().range([0, 2 * Math.PI]);
-  const y = sqrt$1().range([0, RADIUS]);
-
-  const mainContainer = document.querySelector("#main");
-
-  for (const { id, root: data } of window.nodesData) {
-    const wrapper = document.createElement("div");
-    wrapper.innerHTML = `
-    <div class="chart">
-      <h3>${id}</h3>
-      <div class="details" style="display: none;">
-        <div class="details-name" ></div>
-        <div class="details-percentage" ></div>
-        of bundle size
-        <div class="details-size" ></div>
-      </div>
-    </div>
-    `;
-    const chartNode = wrapper.querySelector(".chart");
-    mainContainer.appendChild(chartNode);
-
-    const g = select(chartNode)
-      .append("svg")
-      .attr("viewBox", [0, 0, WIDTH, HEIGHT])
-      .append("g")
-      .attr("transform", `translate(${WIDTH / 2},${HEIGHT / 2})`);
-
-    const root = hierarchy(data)
-      .sum(d => {
-        if (d.children && d.children.length) {
-          return 0;
-        } else {
-          return d.size;
+      for (const { source, target } of links || []) {
+        if (!importedByCache.has(target)) {
+          importedByCache.set(target, []);
         }
+        if (!importedCache.has(source)) {
+          importedCache.set(source, []);
+        }
+
+        importedByCache.get(target).push({ uid: source, ...nodes[source] });
+        importedCache.get(source).push({ uid: target, ...nodes[target] });
+      }
+
+      contentNodes.each(data => {
+        const contentCache = {};
+
+        const str = [];
+        if (getNodePath != null) {
+          str.push(getNodePath(data));
+        }
+
+        const value = getNodeSize(data);
+        if (value !== 0) {
+          let sizeStr = `<b>Size: ${format_1(value)}</b>`;
+
+          if (totalSize != null) {
+            const percentageNum = (100 * value) / totalSize;
+            const percentage = percentageNum.toFixed(2);
+            const percentageString = percentage + "%";
+
+            sizeStr += ` (${percentageString})`;
+          }
+          str.push(sizeStr);
+        }
+
+        const uid = getNodeUid(data);
+        if (uid && importedByCache.has(uid)) {
+          const importedBy = importedByCache.get(uid);
+          str.push(
+            `<b>Imported By</b>: <br/>${[
+            ...new Set(importedBy.map(({ id }) => id))
+          ].join("<br/>")}`
+          );
+        }
+
+        contentCache.html = str.join("<br/>");
+
+        this.tooltipContentCache.set(data, contentCache);
+      });
+    }
+  }
+
+  const drawChart = (parentNode, { tree, nodes, links }, width, height) => {
+    const layout = d3treemap()
+      .size([width, height])
+      .paddingOuter(8)
+      .paddingTop(20)
+      .paddingInner(5)
+      .round(true)
+      .tile(treemapResquarify);
+
+    const charNode = select(parentNode);
+
+    const svg = charNode.append("svg").attr("viewBox", [0, 0, width, height]);
+
+    const tooltip = new Tooltip(charNode);
+
+    let root = hierarchy(tree)
+      .eachAfter(node => {
+        let sum = 0;
+        const children = node.children;
+        if (children != null) {
+          let i = children.length;
+          while (--i >= 0) sum += children[i].value;
+        } else {
+          sum = nodes[node.data.uid].renderedLength;
+        }
+
+        node.clipUid = uid("clip");
+        node.nodeUid = uid("node");
+
+        node.originalValue = sum;
+        node.value = sum;
       })
-      .sort();
+      .sort((a, b) => b.originalValue - a.originalValue);
 
-    const arc = d3arc()
-      .startAngle(d => Math.max(0, Math.min(2 * Math.PI, x(d.x0))))
-      .endAngle(d => Math.max(0, Math.min(2 * Math.PI, x(d.x1))))
-      .innerRadius(d => y(d.y0))
-      .outerRadius(d => y(d.y1));
+    const color = createRainbowColor(root);
 
-    const partition = d3partition();
+    const desiredValue = root.originalValue * 0.2;
 
-    partition(root);
+    const updateChart = selectedNode => {
+      //handle zoom of selected node
+      const selectedNodeMultiplier =
+        selectedNode != null
+          ? desiredValue > selectedNode.originalValue
+            ? desiredValue / selectedNode.originalValue
+            : 3
+          : 1;
 
-    g.selectAll("path")
-      .data(partition(root).descendants())
-      .enter()
-      .append("path")
+      // i only need to increase value of leaf nodes
+      // as folders will sum they up
+      const nodesToIncrease =
+        selectedNode != null
+          ? selectedNode.children != null
+            ? selectedNode.leaves()
+            : [selectedNode]
+          : [];
 
-      .attr("d", arc)
-      .attr("fill-rule", "evenodd")
-      .style("stroke", "#fff")
-      .style("fill", d => color$1(d))
-      .on("mouseover", d => {
-        const percentageNum = (100 * d.value) / totalSize;
-        const percentage = percentageNum.toFixed(2);
-        const percentageString = percentage + "%";
+      const nodesToIncreaseSet = new Set(nodesToIncrease);
 
-        select(chartNode)
-          .select(".details-name")
-          .text(d.data.name);
+      // update value for nodes
+      root = root.eachAfter(node => {
+        let sum = 0;
+        const children = node.children;
+        if (children != null) {
+          let i = children.length;
+          while (--i >= 0) sum += children[i].value;
+        } else {
+          sum = nodesToIncreaseSet.has(node)
+            ? node.originalValue * selectedNodeMultiplier
+            : node.originalValue;
+        }
 
-        select(chartNode)
-          .select(".details-percentage")
-          .text(percentageString);
-
-        select(chartNode)
-          .select(".details-size")
-          .text(format_1(d.value));
-
-        select(chartNode)
-          .select(".details")
-          .style("display", "block");
-
-        const sequenceArray = getAncestors(d);
-        //updateBreadcrumbs(sequenceArray, percentageString);
-
-        // Fade all the segments.
-        g.selectAll("path").style("opacity", 0.3);
-
-        // Then highlight only those that are an ancestor of the current segment.
-        g.selectAll("path")
-          .filter(node => sequenceArray.indexOf(node) >= 0)
-          .style("opacity", 1);
+        node.value = sum;
       });
 
-    const totalSize = root.value;
+      layout(root);
 
-    select(chartNode).on("mouseleave", () => {
-      g.selectAll("path").style("opacity", 1);
+      // this will make groups by height
+      const nestedDataMap = group(root.descendants(), d => d.height);
+      const nestedData = Array.from(nestedDataMap, ([key, values]) => ({
+        key,
+        values
+      }));
+      nestedData.sort((a, b) => b.key - a.key);
 
-      select(".details").style("display", "none");
-    });
-  }
+      const layers = svg
+        .selectAll(".layer")
+        .data(nestedData, d => d.key)
+        .join("g")
+        .attr("class", "layer");
+
+      const nodeGroups = layers
+        .selectAll(".node")
+        .data(
+          d => d.values,
+          d => d
+        )
+        .join("g")
+        .attr("class", "node")
+        .attr("transform", d => `translate(${d.x0},${d.y0})`)
+        .on("mouseover", tooltip.onMouseOver)
+        .on("mousemove", tooltip.onMouseMove)
+        .on("mouseleave", tooltip.onMouseLeave)
+        .on("click", (event, d) => {
+          if (d === selectedNode) {
+            updateChart();
+          } else {
+            updateChart(d);
+          }
+        });
+      //fill node groups
+      const rect = nodeGroups
+        .selectAll("rect")
+        .data(d => [d])
+        .join("rect")
+        .attr("id", d => d.nodeUid.id)
+        .attr("fill", d => color(d).backgroundColor)
+        .attr("rx", 2)
+        .attr("ry", 2)
+        .attr("width", d => d.x1 - d.x0)
+        .attr("height", d => d.y1 - d.y0)
+        .style("stroke", null)
+        .attr("stroke-width", null);
+
+      if (selectedNode != null) {
+        rect
+          .filter(d => d === selectedNode)
+          .style("stroke", "#fff")
+          .attr("stroke-width", 2);
+      }
+
+      // add clipPath so text do not go out of node
+      nodeGroups
+        .selectAll("clipPath")
+        .data(d => [d])
+        .join("clipPath")
+        .attr("id", d => d.clipUid.id)
+        .selectAll("use")
+        .data(d => [d])
+        .join("use")
+        .attr("xlink:href", d => d.nodeUid.href);
+
+      // add text with clipping
+      const text = nodeGroups
+        .selectAll("text")
+        .data(d => [d])
+        .join("text")
+        .attr("clip-path", d => d.clipUid)
+        .style("fill", d => color(d).fontColor);
+
+      text
+        .selectAll("tspan")
+        .data(d => [d.data.name, format_1(d.originalValue)])
+        .join("tspan")
+        .attr("fill-opacity", (d, i, nodes) =>
+          i === nodes.length - 1 ? 0.7 : null
+        )
+        .style("font-size", "0.7em")
+        .text(d => d);
+
+      nodeGroups
+        .filter(d => d.children)
+        .selectAll("tspan")
+        .attr("dx", 3)
+        .attr("y", 13);
+
+      nodeGroups
+        .filter(d => !d.children)
+        .selectAll("tspan")
+        .attr("x", 3)
+        .attr(
+          "y",
+          (d, i, nodes) => `${(i === nodes.length - 1) * 0.3 + 1.1 + i * 0.9}em`
+        );
+
+      tooltip.buildCache(nodeGroups, {
+        getNodeSize: d => d.originalValue,
+        totalSize: root.originalValue,
+        nodes,
+        links
+      });
+    };
+
+    updateChart();
+  };
+
+  return drawChart;
 
 }());
-</script>
-</body>
+
+    </script>
+    <script>
+      const chartParameters = {};
+      const data = {"version":1,"tree":{"name":"index.esm.js","children":[{"name":"node_modules","children":[{"name":"classnames","children":[{"name":"index.js","uid":"58bb-2"}]},{"name":"react-is","children":[{"name":"cjs","children":[{"name":"react-is.production.min.js","uid":"58bb-5"},{"name":"react-is.development.js","uid":"58bb-6"}]},{"name":"index.js","uid":"58bb-9"}]},{"name":"object-assign","children":[{"name":"index.js","uid":"58bb-10"}]},{"name":"prop-types","children":[{"name":"lib","children":[{"name":"ReactPropTypesSecret.js","uid":"58bb-11"}]},{"name":"checkPropTypes.js","uid":"58bb-13"},{"name":"factoryWithTypeCheckers.js","uid":"58bb-17"},{"name":"factoryWithThrowingShims.js","uid":"58bb-18"},{"name":"index.js","uid":"58bb-21"}]},{"name":"fast-memoize","children":[{"name":"src","children":[{"name":"index.js","uid":"58bb-22"}]}]},{"name":"flag-icon-css","children":[{"name":"css","children":[{"name":"flag-icon.css","uid":"58bb-24"}]}]},{"name":"@date-io","children":[{"name":"moment","children":[{"name":"build","children":[{"name":"index.esm.js","uid":"58bb-32"}]}]}]},{"name":"@babel","children":[{"name":"runtime","children":[{"name":"helpers","children":[{"name":"esm","children":[{"name":"defineProperty.js","uid":"58bb-33"},{"name":"extends.js","uid":"58bb-36"},{"name":"objectWithoutPropertiesLoose.js","uid":"58bb-37"},{"name":"objectWithoutProperties.js","uid":"58bb-38"},{"name":"inheritsLoose.js","uid":"58bb-40"},{"name":"arrayWithHoles.js","uid":"58bb-42"},{"name":"iterableToArrayLimit.js","uid":"58bb-43"},{"name":"nonIterableRest.js","uid":"58bb-44"},{"name":"slicedToArray.js","uid":"58bb-45"},{"name":"classCallCheck.js","uid":"58bb-46"},{"name":"createClass.js","uid":"58bb-47"},{"name":"typeof.js","uid":"58bb-48"},{"name":"assertThisInitialized.js","uid":"58bb-49"},{"name":"possibleConstructorReturn.js","uid":"58bb-50"},{"name":"getPrototypeOf.js","uid":"58bb-51"},{"name":"setPrototypeOf.js","uid":"58bb-52"},{"name":"inherits.js","uid":"58bb-53"}]}]}]}]},{"name":"@material-ui","children":[{"name":"pickers","children":[{"name":"esm","children":[{"name":"useUtils-cfb96ac9.js","uid":"58bb-34"},{"name":"Wrapper-241966d7.js","uid":"58bb-39"},{"name":"Day.js","uid":"58bb-54"},{"name":"Calendar-11ae61f6.js","uid":"58bb-68"},{"name":"Clock-48fde975.js","uid":"58bb-69"},{"name":"ClockView.js","uid":"58bb-70"},{"name":"Picker-ccd9ba90.js","uid":"58bb-71"},{"name":"makePickerWithState-5a79cb8a.js","uid":"58bb-72"},{"name":"DatePicker.js","uid":"58bb-73"},{"name":"TimePickerToolbar-81100fab.js","uid":"58bb-74"},{"name":"TimePicker.js","uid":"58bb-75"},{"name":"DateTimePicker.js","uid":"58bb-76"},{"name":"index.js","uid":"58bb-77"}]}]}]},{"name":"clsx","children":[{"name":"dist","children":[{"name":"clsx.m.js","uid":"58bb-35"}]}]},{"name":"rifm","children":[{"name":"dist","children":[{"name":"rifm.esm.js","uid":"58bb-41"}]}]},{"name":"dom-helpers","children":[{"name":"esm","children":[{"name":"hasClass.js","uid":"58bb-55"},{"name":"addClass.js","uid":"58bb-56"},{"name":"removeClass.js","uid":"58bb-57"}]}]},{"name":"react-transition-group","children":[{"name":"esm","children":[{"name":"config.js","uid":"58bb-58"},{"name":"utils","children":[{"name":"PropTypes.js","uid":"58bb-59"},{"name":"ChildMapping.js","uid":"58bb-63"}]},{"name":"TransitionGroupContext.js","uid":"58bb-60"},{"name":"Transition.js","uid":"58bb-61"},{"name":"CSSTransition.js","uid":"58bb-62"},{"name":"TransitionGroup.js","uid":"58bb-64"},{"name":"ReplaceTransition.js","uid":"58bb-65"},{"name":"SwitchTransition.js","uid":"58bb-66"},{"name":"index.js","uid":"58bb-67"}]}]}]},{"name":"src","children":[{"name":"controls","children":[{"name":"control.js","uid":"58bb-3"},{"name":"MUIText.js","uid":"58bb-4"},{"name":"material-ui-phone-number","children":[{"name":"country_data.js","uid":"58bb-23"},{"name":"components","children":[{"name":"Item.js","uid":"58bb-25"},{"name":"polyfills.js","uid":"58bb-26"},{"name":"index.js","uid":"58bb-27"}]},{"name":"index.js","uid":"58bb-28"}]},{"name":"MUIPhone.js","uid":"58bb-29"},{"name":"MUICheckbox.js","uid":"58bb-30"},{"name":"MUISwitch.js","uid":"58bb-31"},{"name":"MUIKeyboardDatePicker.js","uid":"58bb-78"},{"name":"index.js","uid":"58bb-79"}]},{"name":"index.js","uid":"58bb-80"}]},{"name":"\u0000rollupPluginBabelHelpers.js","uid":"58bb-0"},{"name":"\u0000commonjsHelpers.js","uid":"58bb-1"},{"name":"\u0000/Users/dtai/work/hanzo/hanzo/packages/react/node_modules/react-is/cjs/react-is.production.min.js?commonjs-proxy","uid":"58bb-7"},{"name":"\u0000/Users/dtai/work/hanzo/hanzo/packages/react/node_modules/react-is/cjs/react-is.development.js?commonjs-proxy","uid":"58bb-8"},{"name":"\u0000/Users/dtai/work/hanzo/hanzo/packages/react/node_modules/prop-types/lib/ReactPropTypesSecret.js?commonjs-proxy","uid":"58bb-12"},{"name":"\u0000/Users/dtai/work/hanzo/hanzo/packages/react/node_modules/react-is/index.js?commonjs-proxy","uid":"58bb-14"},{"name":"\u0000/Users/dtai/work/hanzo/hanzo/packages/react/node_modules/object-assign/index.js?commonjs-proxy","uid":"58bb-15"},{"name":"\u0000/Users/dtai/work/hanzo/hanzo/packages/react/node_modules/prop-types/checkPropTypes.js?commonjs-proxy","uid":"58bb-16"},{"name":"\u0000/Users/dtai/work/hanzo/hanzo/packages/react/node_modules/prop-types/factoryWithTypeCheckers.js?commonjs-proxy","uid":"58bb-19"},{"name":"\u0000/Users/dtai/work/hanzo/hanzo/packages/react/node_modules/prop-types/factoryWithThrowingShims.js?commonjs-proxy","uid":"58bb-20"}]},"nodes":{"58bb-0":{"renderedLength":6031,"id":"\u0000rollupPluginBabelHelpers.js"},"58bb-1":{"renderedLength":255,"id":"\u0000commonjsHelpers.js"},"58bb-2":{"renderedLength":987,"id":"/Users/dtai/work/hanzo/hanzo/packages/react/node_modules/classnames/index.js"},"58bb-3":{"renderedLength":5023,"id":"/Users/dtai/work/hanzo/hanzo/packages/react/src/controls/control.js"},"58bb-4":{"renderedLength":8939,"id":"/Users/dtai/work/hanzo/hanzo/packages/react/src/controls/MUIText.js"},"58bb-5":{"renderedLength":4294,"id":"/Users/dtai/work/hanzo/hanzo/packages/react/node_modules/react-is/cjs/react-is.production.min.js"},"58bb-6":{"renderedLength":10344,"id":"/Users/dtai/work/hanzo/hanzo/packages/react/node_modules/react-is/cjs/react-is.development.js"},"58bb-7":{"renderedLength":0,"id":"\u0000/Users/dtai/work/hanzo/hanzo/packages/react/node_modules/react-is/cjs/react-is.production.min.js?commonjs-proxy"},"58bb-8":{"renderedLength":0,"id":"\u0000/Users/dtai/work/hanzo/hanzo/packages/react/node_modules/react-is/cjs/react-is.development.js?commonjs-proxy"},"58bb-9":{"renderedLength":1231,"id":"/Users/dtai/work/hanzo/hanzo/packages/react/node_modules/react-is/index.js"},"58bb-10":{"renderedLength":2094,"id":"/Users/dtai/work/hanzo/hanzo/packages/react/node_modules/object-assign/index.js"},"58bb-11":{"renderedLength":310,"id":"/Users/dtai/work/hanzo/hanzo/packages/react/node_modules/prop-types/lib/ReactPropTypesSecret.js"},"58bb-12":{"renderedLength":0,"id":"\u0000/Users/dtai/work/hanzo/hanzo/packages/react/node_modules/prop-types/lib/ReactPropTypesSecret.js?commonjs-proxy"},"58bb-13":{"renderedLength":3577,"id":"/Users/dtai/work/hanzo/hanzo/packages/react/node_modules/prop-types/checkPropTypes.js"},"58bb-14":{"renderedLength":0,"id":"\u0000/Users/dtai/work/hanzo/hanzo/packages/react/node_modules/react-is/index.js?commonjs-proxy"},"58bb-15":{"renderedLength":0,"id":"\u0000/Users/dtai/work/hanzo/hanzo/packages/react/node_modules/object-assign/index.js?commonjs-proxy"},"58bb-16":{"renderedLength":0,"id":"\u0000/Users/dtai/work/hanzo/hanzo/packages/react/node_modules/prop-types/checkPropTypes.js?commonjs-proxy"},"58bb-17":{"renderedLength":21224,"id":"/Users/dtai/work/hanzo/hanzo/packages/react/node_modules/prop-types/factoryWithTypeCheckers.js"},"58bb-18":{"renderedLength":1366,"id":"/Users/dtai/work/hanzo/hanzo/packages/react/node_modules/prop-types/factoryWithThrowingShims.js"},"58bb-19":{"renderedLength":0,"id":"\u0000/Users/dtai/work/hanzo/hanzo/packages/react/node_modules/prop-types/factoryWithTypeCheckers.js?commonjs-proxy"},"58bb-20":{"renderedLength":0,"id":"\u0000/Users/dtai/work/hanzo/hanzo/packages/react/node_modules/prop-types/factoryWithThrowingShims.js?commonjs-proxy"},"58bb-21":{"renderedLength":1525,"id":"/Users/dtai/work/hanzo/hanzo/packages/react/node_modules/prop-types/index.js"},"58bb-22":{"renderedLength":2659,"id":"/Users/dtai/work/hanzo/hanzo/packages/react/node_modules/fast-memoize/src/index.js"},"58bb-23":{"renderedLength":15924,"id":"/Users/dtai/work/hanzo/hanzo/packages/react/src/controls/material-ui-phone-number/country_data.js"},"58bb-24":{"renderedLength":0,"id":"/Users/dtai/work/hanzo/hanzo/packages/react/node_modules/flag-icon-css/css/flag-icon.css"},"58bb-25":{"renderedLength":2004,"id":"/Users/dtai/work/hanzo/hanzo/packages/react/src/controls/material-ui-phone-number/components/Item.js"},"58bb-26":{"renderedLength":2111,"id":"/Users/dtai/work/hanzo/hanzo/packages/react/src/controls/material-ui-phone-number/components/polyfills.js"},"58bb-27":{"renderedLength":33143,"id":"/Users/dtai/work/hanzo/hanzo/packages/react/src/controls/material-ui-phone-number/components/index.js"},"58bb-28":{"renderedLength":0,"id":"/Users/dtai/work/hanzo/hanzo/packages/react/src/controls/material-ui-phone-number/index.js"},"58bb-29":{"renderedLength":2817,"id":"/Users/dtai/work/hanzo/hanzo/packages/react/src/controls/MUIPhone.js"},"58bb-30":{"renderedLength":3079,"id":"/Users/dtai/work/hanzo/hanzo/packages/react/src/controls/MUICheckbox.js"},"58bb-31":{"renderedLength":3043,"id":"/Users/dtai/work/hanzo/hanzo/packages/react/src/controls/MUISwitch.js"},"58bb-32":{"renderedLength":7874,"id":"/Users/dtai/work/hanzo/hanzo/packages/react/node_modules/@date-io/moment/build/index.esm.js"},"58bb-33":{"renderedLength":256,"id":"/Users/dtai/work/hanzo/hanzo/packages/react/node_modules/@babel/runtime/helpers/esm/defineProperty.js"},"58bb-34":{"renderedLength":1212,"id":"/Users/dtai/work/hanzo/hanzo/packages/react/node_modules/@material-ui/pickers/esm/useUtils-cfb96ac9.js"},"58bb-35":{"renderedLength":662,"id":"/Users/dtai/work/hanzo/hanzo/packages/react/node_modules/clsx/dist/clsx.m.js"},"58bb-36":{"renderedLength":388,"id":"/Users/dtai/work/hanzo/hanzo/packages/react/node_modules/@babel/runtime/helpers/esm/extends.js"},"58bb-37":{"renderedLength":337,"id":"/Users/dtai/work/hanzo/hanzo/packages/react/node_modules/@babel/runtime/helpers/esm/objectWithoutPropertiesLoose.js"},"58bb-38":{"renderedLength":547,"id":"/Users/dtai/work/hanzo/hanzo/packages/react/node_modules/@babel/runtime/helpers/esm/objectWithoutProperties.js"},"58bb-39":{"renderedLength":7615,"id":"/Users/dtai/work/hanzo/hanzo/packages/react/node_modules/@material-ui/pickers/esm/Wrapper-241966d7.js"},"58bb-40":{"renderedLength":189,"id":"/Users/dtai/work/hanzo/hanzo/packages/react/node_modules/@babel/runtime/helpers/esm/inheritsLoose.js"},"58bb-41":{"renderedLength":4104,"id":"/Users/dtai/work/hanzo/hanzo/packages/react/node_modules/rifm/dist/rifm.esm.js"},"58bb-42":{"renderedLength":73,"id":"/Users/dtai/work/hanzo/hanzo/packages/react/node_modules/@babel/runtime/helpers/esm/arrayWithHoles.js"},"58bb-43":{"renderedLength":608,"id":"/Users/dtai/work/hanzo/hanzo/packages/react/node_modules/@babel/runtime/helpers/esm/iterableToArrayLimit.js"},"58bb-44":{"renderedLength":112,"id":"/Users/dtai/work/hanzo/hanzo/packages/react/node_modules/@babel/runtime/helpers/esm/nonIterableRest.js"},"58bb-45":{"renderedLength":129,"id":"/Users/dtai/work/hanzo/hanzo/packages/react/node_modules/@babel/runtime/helpers/esm/slicedToArray.js"},"58bb-46":{"renderedLength":163,"id":"/Users/dtai/work/hanzo/hanzo/packages/react/node_modules/@babel/runtime/helpers/esm/classCallCheck.js"},"58bb-47":{"renderedLength":572,"id":"/Users/dtai/work/hanzo/hanzo/packages/react/node_modules/@babel/runtime/helpers/esm/createClass.js"},"58bb-48":{"renderedLength":418,"id":"/Users/dtai/work/hanzo/hanzo/packages/react/node_modules/@babel/runtime/helpers/esm/typeof.js"},"58bb-49":{"renderedLength":179,"id":"/Users/dtai/work/hanzo/hanzo/packages/react/node_modules/@babel/runtime/helpers/esm/assertThisInitialized.js"},"58bb-50":{"renderedLength":192,"id":"/Users/dtai/work/hanzo/hanzo/packages/react/node_modules/@babel/runtime/helpers/esm/possibleConstructorReturn.js"},"58bb-51":{"renderedLength":221,"id":"/Users/dtai/work/hanzo/hanzo/packages/react/node_modules/@babel/runtime/helpers/esm/getPrototypeOf.js"},"58bb-52":{"renderedLength":191,"id":"/Users/dtai/work/hanzo/hanzo/packages/react/node_modules/@babel/runtime/helpers/esm/setPrototypeOf.js"},"58bb-53":{"renderedLength":430,"id":"/Users/dtai/work/hanzo/hanzo/packages/react/node_modules/@babel/runtime/helpers/esm/inherits.js"},"58bb-54":{"renderedLength":1823,"id":"/Users/dtai/work/hanzo/hanzo/packages/react/node_modules/@material-ui/pickers/esm/Day.js"},"58bb-55":{"renderedLength":238,"id":"/Users/dtai/work/hanzo/hanzo/packages/react/node_modules/dom-helpers/esm/hasClass.js"},"58bb-56":{"renderedLength":348,"id":"/Users/dtai/work/hanzo/hanzo/packages/react/node_modules/dom-helpers/esm/addClass.js"},"58bb-57":{"renderedLength":567,"id":"/Users/dtai/work/hanzo/hanzo/packages/react/node_modules/dom-helpers/esm/removeClass.js"},"58bb-58":{"renderedLength":35,"id":"/Users/dtai/work/hanzo/hanzo/packages/react/node_modules/react-transition-group/esm/config.js"},"58bb-59":{"renderedLength":632,"id":"/Users/dtai/work/hanzo/hanzo/packages/react/node_modules/react-transition-group/esm/utils/PropTypes.js"},"58bb-60":{"renderedLength":55,"id":"/Users/dtai/work/hanzo/hanzo/packages/react/node_modules/react-transition-group/esm/TransitionGroupContext.js"},"58bb-61":{"renderedLength":16172,"id":"/Users/dtai/work/hanzo/hanzo/packages/react/node_modules/react-transition-group/esm/Transition.js"},"58bb-62":{"renderedLength":10289,"id":"/Users/dtai/work/hanzo/hanzo/packages/react/node_modules/react-transition-group/esm/CSSTransition.js"},"58bb-63":{"renderedLength":4614,"id":"/Users/dtai/work/hanzo/hanzo/packages/react/node_modules/react-transition-group/esm/utils/ChildMapping.js"},"58bb-64":{"renderedLength":5938,"id":"/Users/dtai/work/hanzo/hanzo/packages/react/node_modules/react-transition-group/esm/TransitionGroup.js"},"58bb-65":{"renderedLength":0,"id":"/Users/dtai/work/hanzo/hanzo/packages/react/node_modules/react-transition-group/esm/ReplaceTransition.js"},"58bb-66":{"renderedLength":0,"id":"/Users/dtai/work/hanzo/hanzo/packages/react/node_modules/react-transition-group/esm/SwitchTransition.js"},"58bb-67":{"renderedLength":0,"id":"/Users/dtai/work/hanzo/hanzo/packages/react/node_modules/react-transition-group/esm/index.js"},"58bb-68":{"renderedLength":19645,"id":"/Users/dtai/work/hanzo/hanzo/packages/react/node_modules/@material-ui/pickers/esm/Calendar-11ae61f6.js"},"58bb-69":{"renderedLength":9737,"id":"/Users/dtai/work/hanzo/hanzo/packages/react/node_modules/@material-ui/pickers/esm/Clock-48fde975.js"},"58bb-70":{"renderedLength":6816,"id":"/Users/dtai/work/hanzo/hanzo/packages/react/node_modules/@material-ui/pickers/esm/ClockView.js"},"58bb-71":{"renderedLength":14643,"id":"/Users/dtai/work/hanzo/hanzo/packages/react/node_modules/@material-ui/pickers/esm/Picker-ccd9ba90.js"},"58bb-72":{"renderedLength":23368,"id":"/Users/dtai/work/hanzo/hanzo/packages/react/node_modules/@material-ui/pickers/esm/makePickerWithState-5a79cb8a.js"},"58bb-73":{"renderedLength":3294,"id":"/Users/dtai/work/hanzo/hanzo/packages/react/node_modules/@material-ui/pickers/esm/DatePicker.js"},"58bb-74":{"renderedLength":0,"id":"/Users/dtai/work/hanzo/hanzo/packages/react/node_modules/@material-ui/pickers/esm/TimePickerToolbar-81100fab.js"},"58bb-75":{"renderedLength":0,"id":"/Users/dtai/work/hanzo/hanzo/packages/react/node_modules/@material-ui/pickers/esm/TimePicker.js"},"58bb-76":{"renderedLength":0,"id":"/Users/dtai/work/hanzo/hanzo/packages/react/node_modules/@material-ui/pickers/esm/DateTimePicker.js"},"58bb-77":{"renderedLength":0,"id":"/Users/dtai/work/hanzo/hanzo/packages/react/node_modules/@material-ui/pickers/esm/index.js"},"58bb-78":{"renderedLength":3053,"id":"/Users/dtai/work/hanzo/hanzo/packages/react/src/controls/MUIKeyboardDatePicker.js"},"58bb-79":{"renderedLength":0,"id":"/Users/dtai/work/hanzo/hanzo/packages/react/src/controls/index.js"},"58bb-80":{"renderedLength":0,"isEntry":true,"id":"/Users/dtai/work/hanzo/hanzo/packages/react/src/index.js"},"58bb-81":{"renderedLength":0,"isExternal":true,"id":"react"},"58bb-82":{"renderedLength":0,"isExternal":true,"id":"@hanzo/utils"},"58bb-83":{"renderedLength":0,"isExternal":true,"id":"@material-ui/core"},"58bb-84":{"renderedLength":0,"isExternal":true,"id":"@material-ui/core/styles"},"58bb-85":{"renderedLength":0,"isExternal":true,"id":"moment-timezone"},"58bb-86":{"renderedLength":0,"isExternal":true,"id":"moment"},"58bb-87":{"renderedLength":0,"isExternal":true,"id":"@material-ui/core/Typography"},"58bb-88":{"renderedLength":0,"isExternal":true,"id":"@material-ui/core/Button"},"58bb-89":{"renderedLength":0,"isExternal":true,"id":"@material-ui/core/Toolbar"},"58bb-90":{"renderedLength":0,"isExternal":true,"id":"@material-ui/core/TextField"},"58bb-91":{"renderedLength":0,"isExternal":true,"id":"@material-ui/core/IconButton"},"58bb-92":{"renderedLength":0,"isExternal":true,"id":"@material-ui/core/InputAdornment"},"58bb-93":{"renderedLength":0,"isExternal":true,"id":"@material-ui/core/SvgIcon"},"58bb-94":{"renderedLength":0,"isExternal":true,"id":"@material-ui/core/CircularProgress"},"58bb-95":{"renderedLength":0,"isExternal":true,"id":"@material-ui/core/DialogActions"},"58bb-96":{"renderedLength":0,"isExternal":true,"id":"@material-ui/core/DialogContent"},"58bb-97":{"renderedLength":0,"isExternal":true,"id":"@material-ui/core/Dialog"},"58bb-98":{"renderedLength":0,"isExternal":true,"id":"@material-ui/core/Popover"},"58bb-99":{"renderedLength":0,"isExternal":true,"id":"@material-ui/core/Grid"},"58bb-100":{"renderedLength":0,"isExternal":true,"id":"@material-ui/core/Tab"},"58bb-101":{"renderedLength":0,"isExternal":true,"id":"@material-ui/core/Tabs"},"58bb-102":{"renderedLength":0,"isExternal":true,"id":"@material-ui/core/Paper"},"58bb-103":{"renderedLength":0,"isExternal":true,"id":"@material-ui/core/Menu"},"58bb-104":{"renderedLength":0,"isExternal":true,"id":"@material-ui/core/Divider"},"58bb-105":{"renderedLength":0,"isExternal":true,"id":"@material-ui/core/NativeSelect"},"58bb-106":{"renderedLength":0,"isExternal":true,"id":"@material-ui/core/styles/withStyles"},"58bb-107":{"renderedLength":0,"isExternal":true,"id":"@material-ui/core/MenuItem"},"58bb-108":{"renderedLength":0,"isExternal":true,"id":"@material-ui/core/RootRef"},"58bb-109":{"renderedLength":0,"isExternal":true,"id":"react-dom"}},"links":[{"source":"58bb-80","target":"58bb-79"},{"source":"58bb-79","target":"58bb-3"},{"source":"58bb-79","target":"58bb-4"},{"source":"58bb-79","target":"58bb-29"},{"source":"58bb-79","target":"58bb-30"},{"source":"58bb-79","target":"58bb-31"},{"source":"58bb-79","target":"58bb-78"},{"source":"58bb-3","target":"58bb-0"},{"source":"58bb-3","target":"58bb-81"},{"source":"58bb-3","target":"58bb-2"},{"source":"58bb-3","target":"58bb-82"},{"source":"58bb-4","target":"58bb-0"},{"source":"58bb-4","target":"58bb-82"},{"source":"58bb-4","target":"58bb-83"},{"source":"58bb-4","target":"58bb-81"},{"source":"58bb-4","target":"58bb-3"},{"source":"58bb-29","target":"58bb-0"},{"source":"58bb-29","target":"58bb-81"},{"source":"58bb-29","target":"58bb-3"},{"source":"58bb-29","target":"58bb-28"},{"source":"58bb-30","target":"58bb-0"},{"source":"58bb-30","target":"58bb-81"},{"source":"58bb-30","target":"58bb-3"},{"source":"58bb-30","target":"58bb-83"},{"source":"58bb-30","target":"58bb-84"},{"source":"58bb-31","target":"58bb-0"},{"source":"58bb-31","target":"58bb-81"},{"source":"58bb-31","target":"58bb-3"},{"source":"58bb-31","target":"58bb-83"},{"source":"58bb-31","target":"58bb-84"},{"source":"58bb-78","target":"58bb-0"},{"source":"58bb-78","target":"58bb-81"},{"source":"58bb-78","target":"58bb-85"},{"source":"58bb-78","target":"58bb-32"},{"source":"58bb-78","target":"58bb-77"},{"source":"58bb-78","target":"58bb-3"},{"source":"58bb-78","target":"58bb-82"},{"source":"58bb-2","target":"58bb-1"},{"source":"58bb-28","target":"58bb-27"},{"source":"58bb-32","target":"58bb-86"},{"source":"58bb-77","target":"58bb-33"},{"source":"58bb-77","target":"58bb-81"},{"source":"58bb-77","target":"58bb-21"},{"source":"58bb-77","target":"58bb-34"},{"source":"58bb-77","target":"58bb-35"},{"source":"58bb-77","target":"58bb-36"},{"source":"58bb-77","target":"58bb-38"},{"source":"58bb-77","target":"58bb-87"},{"source":"58bb-77","target":"58bb-84"},{"source":"58bb-77","target":"58bb-72"},{"source":"58bb-77","target":"58bb-88"},{"source":"58bb-77","target":"58bb-89"},{"source":"58bb-77","target":"58bb-39"},{"source":"58bb-77","target":"58bb-68"},{"source":"58bb-77","target":"58bb-73"},{"source":"58bb-77","target":"58bb-90"},{"source":"58bb-77","target":"58bb-91"},{"source":"58bb-77","target":"58bb-92"},{"source":"58bb-77","target":"58bb-41"},{"source":"58bb-77","target":"58bb-93"},{"source":"58bb-77","target":"58bb-45"},{"source":"58bb-77","target":"58bb-71"},{"source":"58bb-77","target":"58bb-46"},{"source":"58bb-77","target":"58bb-47"},{"source":"58bb-77","target":"58bb-50"},{"source":"58bb-77","target":"58bb-51"},{"source":"58bb-77","target":"58bb-53"},{"source":"58bb-77","target":"58bb-54"},{"source":"58bb-77","target":"58bb-67"},{"source":"58bb-77","target":"58bb-94"},{"source":"58bb-77","target":"58bb-95"},{"source":"58bb-77","target":"58bb-96"},{"source":"58bb-77","target":"58bb-97"},{"source":"58bb-77","target":"58bb-98"},{"source":"58bb-77","target":"58bb-69"},{"source":"58bb-77","target":"58bb-70"},{"source":"58bb-77","target":"58bb-74"},{"source":"58bb-77","target":"58bb-75"},{"source":"58bb-77","target":"58bb-99"},{"source":"58bb-77","target":"58bb-100"},{"source":"58bb-77","target":"58bb-101"},{"source":"58bb-77","target":"58bb-102"},{"source":"58bb-77","target":"58bb-76"},{"source":"58bb-27","target":"58bb-0"},{"source":"58bb-27","target":"58bb-81"},{"source":"58bb-27","target":"58bb-21"},{"source":"58bb-27","target":"58bb-2"},{"source":"58bb-27","target":"58bb-90"},{"source":"58bb-27","target":"58bb-92"},{"source":"58bb-27","target":"58bb-88"},{"source":"58bb-27","target":"58bb-103"},{"source":"58bb-27","target":"58bb-104"},{"source":"58bb-27","target":"58bb-105"},{"source":"58bb-27","target":"58bb-106"},{"source":"58bb-27","target":"58bb-22"},{"source":"58bb-27","target":"58bb-23"},{"source":"58bb-27","target":"58bb-25"},{"source":"58bb-27","target":"58bb-82"},{"source":"58bb-27","target":"58bb-26"},{"source":"58bb-21","target":"58bb-1"},{"source":"58bb-21","target":"58bb-9"},{"source":"58bb-21","target":"58bb-17"},{"source":"58bb-21","target":"58bb-18"},{"source":"58bb-21","target":"58bb-14"},{"source":"58bb-21","target":"58bb-19"},{"source":"58bb-21","target":"58bb-20"},{"source":"58bb-34","target":"58bb-81"},{"source":"58bb-34","target":"58bb-21"},{"source":"58bb-38","target":"58bb-37"},{"source":"58bb-72","target":"58bb-33"},{"source":"58bb-72","target":"58bb-81"},{"source":"58bb-72","target":"58bb-21"},{"source":"58bb-72","target":"58bb-34"},{"source":"58bb-72","target":"58bb-35"},{"source":"58bb-72","target":"58bb-36"},{"source":"58bb-72","target":"58bb-38"},{"source":"58bb-72","target":"58bb-87"},{"source":"58bb-72","target":"58bb-84"},{"source":"58bb-72","target":"58bb-88"},{"source":"58bb-72","target":"58bb-89"},{"source":"58bb-72","target":"58bb-39"},{"source":"58bb-72","target":"58bb-90"},{"source":"58bb-72","target":"58bb-91"},{"source":"58bb-72","target":"58bb-92"},{"source":"58bb-72","target":"58bb-41"},{"source":"58bb-72","target":"58bb-93"},{"source":"58bb-72","target":"58bb-45"},{"source":"58bb-72","target":"58bb-71"},{"source":"58bb-39","target":"58bb-81"},{"source":"58bb-39","target":"58bb-21"},{"source":"58bb-39","target":"58bb-35"},{"source":"58bb-39","target":"58bb-36"},{"source":"58bb-39","target":"58bb-38"},{"source":"58bb-39","target":"58bb-84"},{"source":"58bb-39","target":"58bb-88"},{"source":"58bb-39","target":"58bb-95"},{"source":"58bb-39","target":"58bb-96"},{"source":"58bb-39","target":"58bb-97"},{"source":"58bb-39","target":"58bb-98"},{"source":"58bb-68","target":"58bb-81"},{"source":"58bb-68","target":"58bb-21"},{"source":"58bb-68","target":"58bb-34"},{"source":"58bb-68","target":"58bb-35"},{"source":"58bb-68","target":"58bb-36"},{"source":"58bb-68","target":"58bb-38"},{"source":"58bb-68","target":"58bb-87"},{"source":"58bb-68","target":"58bb-84"},{"source":"58bb-68","target":"58bb-39"},{"source":"58bb-68","target":"58bb-91"},{"source":"58bb-68","target":"58bb-93"},{"source":"58bb-68","target":"58bb-46"},{"source":"58bb-68","target":"58bb-47"},{"source":"58bb-68","target":"58bb-50"},{"source":"58bb-68","target":"58bb-51"},{"source":"58bb-68","target":"58bb-53"},{"source":"58bb-68","target":"58bb-54"},{"source":"58bb-68","target":"58bb-67"},{"source":"58bb-68","target":"58bb-94"},{"source":"58bb-73","target":"58bb-33"},{"source":"58bb-73","target":"58bb-81"},{"source":"58bb-73","target":"58bb-21"},{"source":"58bb-73","target":"58bb-34"},{"source":"58bb-73","target":"58bb-35"},{"source":"58bb-73","target":"58bb-36"},{"source":"58bb-73","target":"58bb-38"},{"source":"58bb-73","target":"58bb-87"},{"source":"58bb-73","target":"58bb-84"},{"source":"58bb-73","target":"58bb-72"},{"source":"58bb-73","target":"58bb-88"},{"source":"58bb-73","target":"58bb-89"},{"source":"58bb-73","target":"58bb-39"},{"source":"58bb-73","target":"58bb-68"},{"source":"58bb-73","target":"58bb-90"},{"source":"58bb-73","target":"58bb-91"},{"source":"58bb-73","target":"58bb-92"},{"source":"58bb-73","target":"58bb-41"},{"source":"58bb-73","target":"58bb-93"},{"source":"58bb-73","target":"58bb-45"},{"source":"58bb-73","target":"58bb-71"},{"source":"58bb-73","target":"58bb-46"},{"source":"58bb-73","target":"58bb-47"},{"source":"58bb-73","target":"58bb-50"},{"source":"58bb-73","target":"58bb-51"},{"source":"58bb-73","target":"58bb-53"},{"source":"58bb-73","target":"58bb-54"},{"source":"58bb-73","target":"58bb-67"},{"source":"58bb-73","target":"58bb-94"},{"source":"58bb-73","target":"58bb-95"},{"source":"58bb-73","target":"58bb-96"},{"source":"58bb-73","target":"58bb-97"},{"source":"58bb-73","target":"58bb-98"},{"source":"58bb-73","target":"58bb-69"},{"source":"58bb-73","target":"58bb-70"},{"source":"58bb-41","target":"58bb-40"},{"source":"58bb-41","target":"58bb-81"},{"source":"58bb-45","target":"58bb-42"},{"source":"58bb-45","target":"58bb-43"},{"source":"58bb-45","target":"58bb-44"},{"source":"58bb-71","target":"58bb-33"},{"source":"58bb-71","target":"58bb-81"},{"source":"58bb-71","target":"58bb-21"},{"source":"58bb-71","target":"58bb-34"},{"source":"58bb-71","target":"58bb-35"},{"source":"58bb-71","target":"58bb-36"},{"source":"58bb-71","target":"58bb-38"},{"source":"58bb-71","target":"58bb-87"},{"source":"58bb-71","target":"58bb-84"},{"source":"58bb-71","target":"58bb-39"},{"source":"58bb-71","target":"58bb-68"},{"source":"58bb-71","target":"58bb-45"},{"source":"58bb-71","target":"58bb-70"},{"source":"58bb-50","target":"58bb-48"},{"source":"58bb-50","target":"58bb-49"},{"source":"58bb-53","target":"58bb-52"},{"source":"58bb-54","target":"58bb-81"},{"source":"58bb-54","target":"58bb-21"},{"source":"58bb-54","target":"58bb-35"},{"source":"58bb-54","target":"58bb-36"},{"source":"58bb-54","target":"58bb-38"},{"source":"58bb-54","target":"58bb-87"},{"source":"58bb-54","target":"58bb-84"},{"source":"58bb-54","target":"58bb-91"},{"source":"58bb-67","target":"58bb-62"},{"source":"58bb-67","target":"58bb-65"},{"source":"58bb-67","target":"58bb-66"},{"source":"58bb-67","target":"58bb-64"},{"source":"58bb-67","target":"58bb-61"},{"source":"58bb-67","target":"58bb-58"},{"source":"58bb-69","target":"58bb-81"},{"source":"58bb-69","target":"58bb-21"},{"source":"58bb-69","target":"58bb-35"},{"source":"58bb-69","target":"58bb-84"},{"source":"58bb-69","target":"58bb-46"},{"source":"58bb-69","target":"58bb-47"},{"source":"58bb-69","target":"58bb-50"},{"source":"58bb-69","target":"58bb-51"},{"source":"58bb-69","target":"58bb-53"},{"source":"58bb-70","target":"58bb-81"},{"source":"58bb-70","target":"58bb-21"},{"source":"58bb-70","target":"58bb-34"},{"source":"58bb-70","target":"58bb-35"},{"source":"58bb-70","target":"58bb-36"},{"source":"58bb-70","target":"58bb-87"},{"source":"58bb-70","target":"58bb-84"},{"source":"58bb-70","target":"58bb-46"},{"source":"58bb-70","target":"58bb-47"},{"source":"58bb-70","target":"58bb-50"},{"source":"58bb-70","target":"58bb-51"},{"source":"58bb-70","target":"58bb-53"},{"source":"58bb-70","target":"58bb-69"},{"source":"58bb-74","target":"58bb-81"},{"source":"58bb-74","target":"58bb-34"},{"source":"58bb-74","target":"58bb-35"},{"source":"58bb-74","target":"58bb-84"},{"source":"58bb-74","target":"58bb-72"},{"source":"58bb-74","target":"58bb-39"},{"source":"58bb-74","target":"58bb-69"},{"source":"58bb-75","target":"58bb-33"},{"source":"58bb-75","target":"58bb-81"},{"source":"58bb-75","target":"58bb-21"},{"source":"58bb-75","target":"58bb-34"},{"source":"58bb-75","target":"58bb-35"},{"source":"58bb-75","target":"58bb-36"},{"source":"58bb-75","target":"58bb-38"},{"source":"58bb-75","target":"58bb-87"},{"source":"58bb-75","target":"58bb-84"},{"source":"58bb-75","target":"58bb-72"},{"source":"58bb-75","target":"58bb-88"},{"source":"58bb-75","target":"58bb-89"},{"source":"58bb-75","target":"58bb-39"},{"source":"58bb-75","target":"58bb-68"},{"source":"58bb-75","target":"58bb-90"},{"source":"58bb-75","target":"58bb-91"},{"source":"58bb-75","target":"58bb-92"},{"source":"58bb-75","target":"58bb-41"},{"source":"58bb-75","target":"58bb-93"},{"source":"58bb-75","target":"58bb-45"},{"source":"58bb-75","target":"58bb-71"},{"source":"58bb-75","target":"58bb-46"},{"source":"58bb-75","target":"58bb-47"},{"source":"58bb-75","target":"58bb-50"},{"source":"58bb-75","target":"58bb-51"},{"source":"58bb-75","target":"58bb-53"},{"source":"58bb-75","target":"58bb-54"},{"source":"58bb-75","target":"58bb-67"},{"source":"58bb-75","target":"58bb-94"},{"source":"58bb-75","target":"58bb-95"},{"source":"58bb-75","target":"58bb-96"},{"source":"58bb-75","target":"58bb-97"},{"source":"58bb-75","target":"58bb-98"},{"source":"58bb-75","target":"58bb-69"},{"source":"58bb-75","target":"58bb-70"},{"source":"58bb-75","target":"58bb-74"},{"source":"58bb-76","target":"58bb-33"},{"source":"58bb-76","target":"58bb-81"},{"source":"58bb-76","target":"58bb-21"},{"source":"58bb-76","target":"58bb-34"},{"source":"58bb-76","target":"58bb-35"},{"source":"58bb-76","target":"58bb-36"},{"source":"58bb-76","target":"58bb-38"},{"source":"58bb-76","target":"58bb-87"},{"source":"58bb-76","target":"58bb-84"},{"source":"58bb-76","target":"58bb-72"},{"source":"58bb-76","target":"58bb-88"},{"source":"58bb-76","target":"58bb-89"},{"source":"58bb-76","target":"58bb-39"},{"source":"58bb-76","target":"58bb-68"},{"source":"58bb-76","target":"58bb-90"},{"source":"58bb-76","target":"58bb-91"},{"source":"58bb-76","target":"58bb-92"},{"source":"58bb-76","target":"58bb-41"},{"source":"58bb-76","target":"58bb-93"},{"source":"58bb-76","target":"58bb-45"},{"source":"58bb-76","target":"58bb-71"},{"source":"58bb-76","target":"58bb-46"},{"source":"58bb-76","target":"58bb-47"},{"source":"58bb-76","target":"58bb-50"},{"source":"58bb-76","target":"58bb-51"},{"source":"58bb-76","target":"58bb-53"},{"source":"58bb-76","target":"58bb-54"},{"source":"58bb-76","target":"58bb-67"},{"source":"58bb-76","target":"58bb-94"},{"source":"58bb-76","target":"58bb-95"},{"source":"58bb-76","target":"58bb-96"},{"source":"58bb-76","target":"58bb-97"},{"source":"58bb-76","target":"58bb-98"},{"source":"58bb-76","target":"58bb-69"},{"source":"58bb-76","target":"58bb-70"},{"source":"58bb-76","target":"58bb-74"},{"source":"58bb-76","target":"58bb-99"},{"source":"58bb-76","target":"58bb-100"},{"source":"58bb-76","target":"58bb-101"},{"source":"58bb-76","target":"58bb-102"},{"source":"58bb-23","target":"58bb-0"},{"source":"58bb-25","target":"58bb-0"},{"source":"58bb-25","target":"58bb-81"},{"source":"58bb-25","target":"58bb-21"},{"source":"58bb-25","target":"58bb-107"},{"source":"58bb-25","target":"58bb-108"},{"source":"58bb-25","target":"58bb-24"},{"source":"58bb-9","target":"58bb-1"},{"source":"58bb-9","target":"58bb-5"},{"source":"58bb-9","target":"58bb-6"},{"source":"58bb-9","target":"58bb-7"},{"source":"58bb-9","target":"58bb-8"},{"source":"58bb-17","target":"58bb-9"},{"source":"58bb-17","target":"58bb-10"},{"source":"58bb-17","target":"58bb-11"},{"source":"58bb-17","target":"58bb-13"},{"source":"58bb-17","target":"58bb-14"},{"source":"58bb-17","target":"58bb-15"},{"source":"58bb-17","target":"58bb-12"},{"source":"58bb-17","target":"58bb-16"},{"source":"58bb-18","target":"58bb-11"},{"source":"58bb-18","target":"58bb-12"},{"source":"58bb-14","target":"58bb-9"},{"source":"58bb-19","target":"58bb-17"},{"source":"58bb-20","target":"58bb-18"},{"source":"58bb-62","target":"58bb-36"},{"source":"58bb-62","target":"58bb-37"},{"source":"58bb-62","target":"58bb-40"},{"source":"58bb-62","target":"58bb-21"},{"source":"58bb-62","target":"58bb-56"},{"source":"58bb-62","target":"58bb-57"},{"source":"58bb-62","target":"58bb-81"},{"source":"58bb-62","target":"58bb-61"},{"source":"58bb-62","target":"58bb-59"},{"source":"58bb-65","target":"58bb-37"},{"source":"58bb-65","target":"58bb-40"},{"source":"58bb-65","target":"58bb-21"},{"source":"58bb-65","target":"58bb-81"},{"source":"58bb-65","target":"58bb-109"},{"source":"58bb-65","target":"58bb-64"},{"source":"58bb-66","target":"58bb-40"},{"source":"58bb-66","target":"58bb-81"},{"source":"58bb-66","target":"58bb-21"},{"source":"58bb-66","target":"58bb-61"},{"source":"58bb-66","target":"58bb-60"},{"source":"58bb-64","target":"58bb-37"},{"source":"58bb-64","target":"58bb-36"},{"source":"58bb-64","target":"58bb-40"},{"source":"58bb-64","target":"58bb-49"},{"source":"58bb-64","target":"58bb-21"},{"source":"58bb-64","target":"58bb-81"},{"source":"58bb-64","target":"58bb-60"},{"source":"58bb-64","target":"58bb-63"},{"source":"58bb-61","target":"58bb-37"},{"source":"58bb-61","target":"58bb-40"},{"source":"58bb-61","target":"58bb-21"},{"source":"58bb-61","target":"58bb-81"},{"source":"58bb-61","target":"58bb-109"},{"source":"58bb-61","target":"58bb-58"},{"source":"58bb-61","target":"58bb-59"},{"source":"58bb-61","target":"58bb-60"},{"source":"58bb-5","target":"58bb-1"},{"source":"58bb-6","target":"58bb-1"},{"source":"58bb-7","target":"58bb-5"},{"source":"58bb-8","target":"58bb-6"},{"source":"58bb-13","target":"58bb-11"},{"source":"58bb-13","target":"58bb-12"},{"source":"58bb-15","target":"58bb-10"},{"source":"58bb-12","target":"58bb-11"},{"source":"58bb-16","target":"58bb-13"},{"source":"58bb-56","target":"58bb-55"},{"source":"58bb-59","target":"58bb-21"},{"source":"58bb-60","target":"58bb-81"},{"source":"58bb-63","target":"58bb-81"}]};
+
+      document.addEventListener('DOMContentLoaded', () => {
+        const width = chartParameters.width || window.innerWidth;
+        const height = chartParameters.height || window.innerHeight;
+
+        const chartNode = document.querySelector("main");
+        drawChart(chartNode, data, width, height);
+      });
+    </script>
+  </body>
 </html>
