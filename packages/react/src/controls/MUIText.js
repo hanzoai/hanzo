@@ -1,14 +1,15 @@
-import React, { Component } from 'react'
-
-import control from './control'
-import {
-  TextField,
-  MenuItem,
-} from '@material-ui/core'
-
 import {
   isFunction,
 } from '@hanzo/utils'
+
+import {
+  MenuItem,
+  TextField,
+} from '@material-ui/core'
+
+import React, { Component } from 'react'
+
+import control from './control'
 
 const SPECIALNIL = '☭'
 
@@ -35,7 +36,9 @@ const SPECIALNIL = '☭'
 
 export class BaseMUIText extends Component {
   options = undefined
+
   firstValue = undefined
+
   inputRef = undefined
 
   // Default InnerComponent
@@ -58,10 +61,10 @@ export class BaseMUIText extends Component {
       }
 
       if (e && e.target && e.target.value === e === SPECIALNIL) {
-        let newE = Object.create(e, {
+        const newE = Object.create(e, {
           target: {
-            value: undefined
-          }
+            value: undefined,
+          },
         })
 
         return setter(newE)
@@ -72,23 +75,23 @@ export class BaseMUIText extends Component {
   }
 
   // Enable sensitive focus detection using Blur and Focus
-  wrapSensitiveBlur (onBlur) {
+  wrapSensitiveBlur(onBlur) {
     return (e) => {
       this.setState({
         focused: false,
       })
-      if(isFunction(onBlur)) {
+      if (isFunction(onBlur)) {
         onBlur(e)
       }
     }
   }
 
-  wrapSensitiveFocus (onFocus) {
+  wrapSensitiveFocus(onFocus) {
     return (e) => {
       this.setState({
         focused: true,
       })
-      if(isFunction(onFocus)) {
+      if (isFunction(onFocus)) {
         onFocus(e)
       }
     }
@@ -96,19 +99,20 @@ export class BaseMUIText extends Component {
 
   render() {
     let {
-      select,
       options,
-      placeholder,
       value,
       defaultValue,
-      shrink,
       onChange,
       onBlur,
       onFocus,
+      InnerComponent,
+      select,
+      placeholder,
+      shrink,
+      disableAutoChange,
       allowEmpty,
       sensitive,
       type,
-      InnerComponent,
       InputLabelProps,
       InputProps,
       ...props
@@ -118,11 +122,11 @@ export class BaseMUIText extends Component {
       options = this.options
     }
 
-    let isSelect       = select     != null
-    let isSensitive    = sensitive  != null
-    let doesAllowEmpty = allowEmpty != null
+    const isSelect = select != null
+    const isSensitive = sensitive != null
+    const doesAllowEmpty = allowEmpty != null
 
-    let selectOptions  = []
+    const selectOptions = []
     if (!options) {
       options = []
     }
@@ -133,9 +137,20 @@ export class BaseMUIText extends Component {
 
     if (isFunction(onBlur)) {
       onBlur = this.wrapSelectSetter(onBlur)
+
+      if (!disableAutoChange && !isFunction(onChange)) {
+        let onChangeTimeoutId = -1
+
+        onChange = (ev) => {
+          clearTimeout(onChangeTimeoutId)
+          onChangeTimeoutId = setTimeout(() => {
+            onBlur(ev)
+          }, 500)
+        }
+      }
     }
 
-    onBlur  = this.wrapSensitiveBlur(onBlur)
+    onBlur = this.wrapSensitiveBlur(onBlur)
     onFocus = this.wrapSensitiveFocus(onFocus)
 
     if (isSelect) {
@@ -153,47 +168,55 @@ export class BaseMUIText extends Component {
       if (props.SelectProps && props.SelectProps.native) {
         if (placeholder) {
           if (doesAllowEmpty) {
-            selectOptions.push(pug`
-              option( key=SPECIALNIL value=SPECIALNIL)
-                =placeholder
-            `)
+            selectOptions.push(
+              <option key={SPECIALNIL} value={SPECIALNIL}>
+                {placeholder}
+              </option>,
+            )
           } else {
-            selectOptions.push(pug`
-              option(disabled key=SPECIALNIL value=SPECIALNIL)
-                =placeholder
-            `)
+            selectOptions.push(
+              <option disabled key={SPECIALNIL} value={SPECIALNIL}>
+                {placeholder}
+              </option>,
+            )
           }
         }
-        for (let k in options) {
+        for (const k in options) {
           ((key) => {
-            let opt = options[key]
-            selectOptions.push(pug`
-              option(key=key value=key)
-                =opt
-            `)
+            const opt = options[key]
+
+            selectOptions.push(
+              <option key={key} value={key}>
+                {opt}
+              </option>,
+            )
           })(k)
         }
       } else {
         if (placeholder) {
           if (doesAllowEmpty) {
-            selectOptions.push(pug`
-              MenuItem(key=SPECIALNIL value=SPECIALNIL)
-                =placeholder
-            `)
+            selectOptions.push(
+              <MenuItem key={SPECIALNIL} value={SPECIALNIL}>
+                {placeholder}
+              </MenuItem>,
+            )
           } else {
-            selectOptions.push(pug`
-              MenuItem(disabled key=SPECIALNIL value=SPECIALNIL)
-                =placeholder
-            `)
+            selectOptions.push(
+              <MenuItem disabled key={SPECIALNIL} value={SPECIALNIL}>
+                {placeholder}
+              </MenuItem>,
+            )
           }
         }
-        for (let k in options) {
+
+        for (const k in options) {
           ((key) => {
-            let opt = options[key]
-            selectOptions.push(pug`
-              MenuItem(key=key value=key)
-                =opt
-            `)
+            const opt = options[key]
+            selectOptions.push(
+              <MenuItem key={key} value={key}>
+                {opt}
+              </MenuItem>,
+            )
           })(k)
         }
       }
@@ -202,7 +225,7 @@ export class BaseMUIText extends Component {
     // This is only for text inputs because we can't use fully controlled
     // inputs since they update on keystroke rather than the standard onchange.
     // Selects don't have this problem
-    if(!isSelect) {
+    if (!isSelect) {
       // A real default value system for asynchronous uncontrolled inputs
       if (this.firstValue === undefined || this.firstValue === '') {
         this.firstValue = value || defaultValue
@@ -223,26 +246,43 @@ export class BaseMUIText extends Component {
     }
 
     InnerComponent = InnerComponent || this.InnerComponent
-    let InputPropsCheck = InputProps || {}
+    const InputPropsCheck = InputProps || {}
 
-    return pug`
-      InnerComponent(
-        ...props
-        inputRef=(ref) => this.inputRef = ref
-        select=select
-        options=options
-        placeholder=isSelect ? '' : placeholder
-        type=(isSensitive && !this.state.focused) ? 'password' : type
-        value=isSelect ? value : undefined
-        defaultValue=value ? undefined : defaultValue
-        onChange=isSelect ? (onChange || onBlur) : onChange
-        onBlur=isSelect ? this.wrapSensitiveBlur() : onBlur
-        onFocus=onFocus
-        InputProps=InputProps
-        InputLabelProps=Object.assign({ shrink: !!(this.state.focused || (this.inputRef && this.inputRef.value) || !!value || !!defaultValue || shrink || isSelect || placeholder || InputPropsCheck.startAdornment || InputPropsCheck.endAdornment) }, InputLabelProps)
-      )
-        =selectOptions
-      `
+    const { focused } = this.state
+    const shrinkInputLabelProps = !!(focused
+      || (this.inputRef && this.inputRef.value)
+      || !!value
+      || !!defaultValue
+      || shrink
+      || isSelect
+      || placeholder
+      || InputPropsCheck.startAdornment
+      || InputPropsCheck.endAdornment)
+
+    return (
+      <InnerComponent
+        {...props}
+        inputRef={(ref) => { this.inputRef = ref }}
+        select={select}
+        options={options}
+        placeholder={isSelect ? '' : placeholder}
+        type={(isSensitive && !focused) ? 'password' : type}
+        value={isSelect ? value : undefined}
+        defaultValue={value ? undefined : defaultValue}
+        onChange={isSelect ? (onChange || onBlur) : onChange}
+        onBlur={isSelect ? this.wrapSensitiveBlur() : onBlur}
+        onFocus={onFocus}
+        InputProps={InputProps}
+        InputLabelProps={
+          {
+            shrink: shrinkInputLabelProps,
+            ...InputLabelProps,
+          }
+        }
+      >
+        {selectOptions}
+      </InnerComponent>
+    )
   }
 }
 
