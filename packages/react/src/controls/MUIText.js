@@ -80,6 +80,7 @@ export class BaseMUIText extends Component {
       this.setState({
         focused: false,
       })
+
       if (isFunction(onBlur)) {
         onBlur(e)
       }
@@ -91,6 +92,7 @@ export class BaseMUIText extends Component {
       this.setState({
         focused: true,
       })
+
       if (isFunction(onFocus)) {
         onFocus(e)
       }
@@ -143,8 +145,11 @@ export class BaseMUIText extends Component {
 
         onChange = (ev) => {
           clearTimeout(onChangeTimeoutId)
+
+          const { target } = ev
+
           onChangeTimeoutId = setTimeout(() => {
-            onBlur(ev)
+            onBlur({ target })
           }, 500)
         }
       }
