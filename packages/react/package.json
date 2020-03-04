@@ -85,7 +85,8 @@
     "@material-ui/pickers": "3.2.10",
     "classnames": "2.2.6",
     "fast-memoize": "2.5.1",
-    "flag-icon-css": "3.4.6"
+    "flag-icon-css": "3.4.6",
+    "react-number-format": "4.4.1"
   },
   "peerDependencies": {
     "@hanzo/utils": "^0.0.11",

@@ -14,8 +14,9 @@ export {
   rfc3339,
   mmddyyyy,
   yyyymmdd,
-  ddmmyyyy
+  ddmmyyyy,
 } from './date'
+export * from './currency'
 export { default as getPath } from './getPath'
 export { default as assignPath } from './assignPath'
 export { default as debounce } from './debounce'
