@@ -99,7 +99,7 @@ const styles = theme => ({
     cursor: 'pointer',
   },
   helper: {
-    padding: '0 15px 15px',
+    padding: '0 0 15px',
     margin: '-3px 0 0',
   },
 })
