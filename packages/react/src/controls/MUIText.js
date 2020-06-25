@@ -148,9 +148,17 @@ export class BaseMUIText extends Component {
 
           const { target } = ev
 
-          onChangeTimeoutId = setTimeout(() => {
-            onBlur({ target })
-          }, 500)
+          if (isSelect) {
+            onBlur({
+              target,
+            })
+          } else {
+            onChangeTimeoutId = setTimeout(() => {
+              onBlur({
+                target,
+              })
+            }, 500)
+          }
         }
       }
     }
