@@ -1,4 +1,7 @@
-import React, { Component } from 'react'
+import React, {
+  useRef,
+  useState,
+} from 'react'
 
 import classnames from 'classnames'
 import {
@@ -45,105 +48,99 @@ import {
 
 let controlId = 0
 
-export default function control(ControlComponent) {
-  return class Control extends Component {
-    constructor(props) {
-      super(props)
+export default (ControlComponent) => (
+  ({
+    getValue,
+    setValue,
+    inputValue,
+    onBlur,
+    onChange,
+    defaultValue,
+    value,
+    error,
+    helperText,
+    showError,
+    ...props
+  }) => {
+    const [id] = useState(() => controlId++)
+    const controlEl = useRef()
 
-      this.controlId = controlId++
+    let se = showError
+
+    // show error defaults to true
+    if (se == null) {
+      se = true
     }
 
-    get id() {
-      return 'control-' + this.controlId
+    let v = value
+    let dv = defaultValue
+
+    // getValue supercedes both defaultValue and value
+    if (isFunction(getValue)) {
+      v = getValue()
+      dv = undefined
     }
 
-    render() {
-      let {
-        getValue,
-        setValue,
-        inputValue,
-        onBlur,
-        onChange,
-        defaultValue,
-        value,
-        error,
-        helperText,
-        showError,
-        ...props
-      } = this.props
+    let oc = onChange
+    let ob = onBlur
 
-      // show error defaults to true
-      if (showError == null) {
-        showError = true
-      }
-
-      // getValue supercedes both defaultValue and value
-      if (isFunction(getValue)) {
-        value = getValue()
-        defaultValue = undefined
-      }
-
-      // inputValue supercedes setValue
-      if (isFunction(inputValue)) {
-        let originalOnChange = onChange
-        onChange = (e) => {
-          inputValue(valueOrEvent(e))
-          if(isFunction(originalOnChange)) {
-            originalOnChange(e)
-          }
+    // inputValue supercedes setValue
+    if (isFunction(inputValue)) {
+      const originalOnChange = onChange
+      oc = (e) => {
+        inputValue(valueOrEvent(e))
+        if (isFunction(originalOnChange)) {
+          originalOnChange(e)
         }
-
-        setValue = undefined
-      // setValue supercedes both onBlue and onChange
-      } else if (isFunction(setValue)) {
-        let originalOnBlur = onBlur
-        onBlur = (e) => {
-          setValue(valueOrEvent(e))
-          if(isFunction(originalOnBlur)) {
-            originalOnBlur(e)
-          }
-        }
-        onChange = undefined
-
-        // if we are not using the getValue/setValue api, then we must load
-        // a value into the system
-        // some falsy values of value should not cause an initial update
-        if (!this.firstValue && value != null && value !== '' && value !== this.lastValue) {
-          this.firstValue = defaultValue != null && value !== ''
-          onBlur(value)
-          this.lastValue = value
-        } else if (!this.firstValue && defaultValue !== undefined) {
-          this.firstValue = defaultValue != null && value !== ''
-          onBlur(defaultValue);
-        }
-      } else {
-        setValue = undefined
-        inputValue = undefined
       }
+    // setValue supercedes both onBlue and onChange
+    } else if (isFunction(setValue)) {
+      const originalOnBlur = onBlur
+      ob = (e) => {
+        setValue(valueOrEvent(e))
+        if (isFunction(originalOnBlur)) {
+          originalOnBlur(e)
+        }
+      }
+      oc = undefined
 
-      // error must be a string
-      error = valueOrError(error)
-
-      return pug`
-        .control(
-          ref=this.inputRef
-          className=classnames({
-            valid: !error,
-            invalid: error,
-          })
-        )
-          ControlComponent(
-            ...props
-            id         = this.id
-            onBlur     = onBlur
-            onChange   = onChange
-            error      = !!(showError && error)
-            helperText = (showError && error !== undefined && error !== false && error !== true) ? error : helperText
-
-            value        = value
-            defaultValue = defaultValue
-          )
-      `
+      // if we are not using the getValue/setValue api, then we must load
+      // a value into the system
+      // some falsy values of value should not cause an initial update
+      if (v != null && v !== '') {
+        requestAnimationFrame(() => {
+          ob(v)
+        })
+      } else if (dv !== undefined) {
+        requestAnimationFrame(() => {
+          ob(dv)
+        })
+      }
     }
+
+    // error must be a string
+    const e = valueOrError(error)
+
+    return (
+      <div
+        ref={controlEl}
+        className={classnames({
+          control: true,
+          valid: !e,
+          invalid: e,
+        })}
+      >
+        <ControlComponent
+          id={`control-${id}`}
+          onBlur={ob}
+          onChange={oc}
+          error={!!(se && e)}
+          helperText={(se && e !== undefined && e !== false && e !== true) ? e : helperText}
+          value={v}
+          defaultValue={dv}
+          {...props}
+        />
+      </div>
+    )
   }
-}
+)

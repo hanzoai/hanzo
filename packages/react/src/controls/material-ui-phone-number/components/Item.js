@@ -3,7 +3,7 @@ import PropTypes from 'prop-types'
 import MenuItem from '@material-ui/core/MenuItem'
 import RootRef from '@material-ui/core/RootRef'
 
-import 'flag-icon-css/css/flag-icon.css'
+import './flags.css'
 
 class Item extends PureComponent {
   render() {

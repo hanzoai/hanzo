@@ -7,7 +7,12 @@ import {
   TextField,
 } from '@material-ui/core'
 
-import React, { Component } from 'react'
+import React, {
+  useEffect,
+  useMemo,
+  useRef,
+  useState,
+} from 'react'
 
 import control from './control'
 
@@ -34,270 +39,245 @@ const SPECIALNIL = '☭'
 // - sensitive - defaults to a password field unless focused
 //
 
-export class BaseMUIText extends Component {
-  options = undefined
-
-  firstValue = undefined
-
-  inputRef = undefined
-
-  // Default InnerComponent
-  InnerComponent = TextField
-
-  constructor(props) {
-    super(props)
-
-    this.state = {
-      focused: false,
+// Make it so that select can handle a specific nil value based on a rare
+// unicode special value because empty string does not work
+const wrapSelectSetter = (setter) => (
+  (e) => {
+    if (e === SPECIALNIL) {
+      return setter(undefined)
     }
-  }
 
-  // Make it so that select can handle a specific nil value based on a rare
-  // unicode special value because empty string does not work
-  wrapSelectSetter(setter) {
-    return (e) => {
-      if (e === SPECIALNIL) {
-        return setter(undefined)
-      }
+    if (e && e.target && e.target.value === e === SPECIALNIL) {
+      const newE = Object.create(e, {
+        target: {
+          value: undefined,
+        },
+      })
 
-      if (e && e.target && e.target.value === e === SPECIALNIL) {
-        const newE = Object.create(e, {
-          target: {
-            value: undefined,
-          },
-        })
-
-        return setter(newE)
-      }
-
-      return setter(e)
+      return setter(newE)
     }
+
+    return setter(e)
   }
+)
+
+export const BaseMUIText = ({
+  options = [],
+  value,
+  defaultValue,
+  onChange,
+  onBlur,
+  onFocus,
+  InnerComponent,
+  select,
+  placeholder,
+  shrink,
+  disableAutoChange,
+  allowEmpty,
+  sensitive,
+  type,
+  InputLabelProps,
+  InputProps,
+  ...props
+}) => {
+  const [focused, setFocused] = useState(false)
+  const inputRef = useRef()
 
   // Enable sensitive focus detection using Blur and Focus
-  wrapSensitiveBlur(onBlur) {
-    return (e) => {
-      this.setState({
-        focused: false,
-      })
+  const wrapSensitiveBlur = (ob) => (
+    (e) => {
+      setFocused(false)
+      console.log('what')
 
-      if (isFunction(onBlur)) {
-        onBlur(e)
+      if (isFunction(ob)) {
+        ob(e)
+      }
+    }
+  )
+
+  const wrapSensitiveFocus = (of) => (
+    (e) => {
+      setFocused(true)
+
+      if (isFunction(of)) {
+        of(e)
+      }
+    }
+  )
+
+  const isSelect = select != null
+  const isSensitive = sensitive != null
+  const doesAllowEmpty = allowEmpty != null
+
+  const selectOptions = []
+
+  let oc = onChange
+  let ob = onBlur
+  let of = onFocus
+  let dv = defaultValue
+  let v = value
+
+  if (isSelect) {
+    // set the default value to '' if it doesn't exist
+    if (!options[dv]) {
+      dv = SPECIALNIL
+    }
+
+    // set the value to '' if it doesn't exist
+    if (!options[v]) {
+      v = SPECIALNIL
+      dv = undefined
+    }
+
+    if (props.SelectProps && props.SelectProps.native) {
+      if (placeholder) {
+        if (doesAllowEmpty) {
+          selectOptions.push(
+            <option key={SPECIALNIL} value={SPECIALNIL}>
+              {placeholder}
+            </option>,
+          )
+        } else {
+          selectOptions.push(
+            <option disabled key={SPECIALNIL} value={SPECIALNIL}>
+              {placeholder}
+            </option>,
+          )
+        }
+      }
+      for (const k in options) {
+        ((key) => {
+          const opt = options[key]
+
+          selectOptions.push(
+            <option key={key} value={key}>
+              {opt}
+            </option>,
+          )
+        })(k)
+      }
+    } else {
+      if (placeholder) {
+        if (doesAllowEmpty) {
+          selectOptions.push(
+            <MenuItem key={SPECIALNIL} value={SPECIALNIL}>
+              {placeholder}
+            </MenuItem>,
+          )
+        } else {
+          selectOptions.push(
+            <MenuItem disabled key={SPECIALNIL} value={SPECIALNIL}>
+              {placeholder}
+            </MenuItem>,
+          )
+        }
+      }
+
+      for (const k in options) {
+        ((key) => {
+          const opt = options[key]
+          selectOptions.push(
+            <MenuItem key={key} value={key}>
+              {opt}
+            </MenuItem>,
+          )
+        })(k)
       }
     }
   }
 
-  wrapSensitiveFocus(onFocus) {
-    return (e) => {
-      this.setState({
-        focused: true,
-      })
+  const [actualValue, setActualValue] = useState(v || dv)
 
-      if (isFunction(onFocus)) {
-        onFocus(e)
-      }
+  if (isFunction(oc)) {
+    const wssoc = wrapSelectSetter(oc)
+    oc = (e) => {
+      setActualValue(e.target ? e.target.value : e)
+      return wssoc(e)
     }
   }
 
-  render() {
-    let {
-      options,
-      value,
-      defaultValue,
-      onChange,
-      onBlur,
-      onFocus,
-      InnerComponent,
-      select,
-      placeholder,
-      shrink,
-      disableAutoChange,
-      allowEmpty,
-      sensitive,
-      type,
-      InputLabelProps,
-      InputProps,
-      ...props
-    } = this.props
+  if (isFunction(ob)) {
+    const wrappedOb = wrapSelectSetter(ob)
+    ob = wrappedOb
 
-    if (!options) {
-      options = this.options
-    }
-
-    const isSelect = select != null
-    const isSensitive = sensitive != null
-    const doesAllowEmpty = allowEmpty != null
-
-    const selectOptions = []
-    if (!options) {
-      options = []
-    }
-
-    if (isFunction(onChange)) {
-      onChange = this.wrapSelectSetter(onChange)
-    }
-
-    if (isFunction(onBlur)) {
-      onBlur = this.wrapSelectSetter(onBlur)
-
-      if (!disableAutoChange && !isFunction(onChange)) {
+    if (!isFunction(oc)) {
+      oc = useMemo(() => {
         let onChangeTimeoutId = -1
 
-        onChange = (ev) => {
+        return (ev) => {
+          setActualValue(ev.target ? ev.target.value : ev)
+          if (disableAutoChange) {
+            return
+          }
+
           clearTimeout(onChangeTimeoutId)
 
           const { target } = ev
 
           if (isSelect) {
-            onBlur({
+            wrappedOb({
               target,
             })
           } else {
             onChangeTimeoutId = setTimeout(() => {
-              onBlur({
+              wrappedOb({
                 target,
               })
             }, 500)
           }
         }
-      }
+      }, [onBlur])
     }
-
-    onBlur = this.wrapSensitiveBlur(onBlur)
-    onFocus = this.wrapSensitiveFocus(onFocus)
-
-    if (isSelect) {
-      // set the default value to '' if it doesn't exist
-      if (!options[defaultValue]) {
-        defaultValue = SPECIALNIL
-      }
-
-      // set the value to '' if it doesn't exist
-      if (!options[value]) {
-        value = SPECIALNIL
-        defaultValue = undefined
-      }
-
-      if (props.SelectProps && props.SelectProps.native) {
-        if (placeholder) {
-          if (doesAllowEmpty) {
-            selectOptions.push(
-              <option key={SPECIALNIL} value={SPECIALNIL}>
-                {placeholder}
-              </option>,
-            )
-          } else {
-            selectOptions.push(
-              <option disabled key={SPECIALNIL} value={SPECIALNIL}>
-                {placeholder}
-              </option>,
-            )
-          }
-        }
-        for (const k in options) {
-          ((key) => {
-            const opt = options[key]
-
-            selectOptions.push(
-              <option key={key} value={key}>
-                {opt}
-              </option>,
-            )
-          })(k)
-        }
-      } else {
-        if (placeholder) {
-          if (doesAllowEmpty) {
-            selectOptions.push(
-              <MenuItem key={SPECIALNIL} value={SPECIALNIL}>
-                {placeholder}
-              </MenuItem>,
-            )
-          } else {
-            selectOptions.push(
-              <MenuItem disabled key={SPECIALNIL} value={SPECIALNIL}>
-                {placeholder}
-              </MenuItem>,
-            )
-          }
-        }
-
-        for (const k in options) {
-          ((key) => {
-            const opt = options[key]
-            selectOptions.push(
-              <MenuItem key={key} value={key}>
-                {opt}
-              </MenuItem>,
-            )
-          })(k)
-        }
-      }
-    }
-
-    // This is only for text inputs because we can't use fully controlled
-    // inputs since they update on keystroke rather than the standard onchange.
-    // Selects don't have this problem
-    if (!isSelect) {
-      // A real default value system for asynchronous uncontrolled inputs
-      if (this.firstValue === undefined || this.firstValue === '') {
-        this.firstValue = value || defaultValue
-
-        if (this.firstValue !== undefined && this.firstValue !== '') {
-          // Keep trying to set until inputRef is assigned
-          const forceSet = () => {
-            if (this.inputRef) {
-              this.inputRef.value = this.firstValue
-            } else {
-              requestAnimationFrame(forceSet)
-            }
-          }
-
-          requestAnimationFrame(forceSet)
-        }
-      }
-    }
-
-    InnerComponent = InnerComponent || this.InnerComponent
-    const InputPropsCheck = InputProps || {}
-
-    const { focused } = this.state
-    const shrinkInputLabelProps = !!(focused
-      || (this.inputRef && this.inputRef.value)
-      || !!value
-      || !!defaultValue
-      || shrink
-      || isSelect
-      || placeholder
-      || InputPropsCheck.startAdornment
-      || InputPropsCheck.endAdornment)
-
-    return (
-      <InnerComponent
-        {...props}
-        inputRef={(ref) => { this.inputRef = ref }}
-        select={select}
-        options={options}
-        placeholder={isSelect ? '' : placeholder}
-        type={(isSensitive && !focused) ? 'password' : type}
-        value={isSelect ? value : undefined}
-        defaultValue={value ? undefined : defaultValue}
-        onChange={isSelect ? (onChange || onBlur) : onChange}
-        onBlur={isSelect ? this.wrapSensitiveBlur() : onBlur}
-        onFocus={onFocus}
-        InputProps={InputProps}
-        InputLabelProps={
-          {
-            shrink: shrinkInputLabelProps,
-            ...InputLabelProps,
-          }
-        }
-      >
-        {selectOptions}
-      </InnerComponent>
-    )
   }
+
+  // update component if value is different than actual value
+  useEffect(() => {
+    if (v !== actualValue) {
+      requestAnimationFrame(() => setActualValue(v))
+    }
+  }, [v])
+
+  ob = wrapSensitiveBlur(ob)
+  of = wrapSensitiveFocus(of)
+
+  const IC = InnerComponent || TextField
+  const InputPropsCheck = InputProps || {}
+
+  const shrinkInputLabelProps = !!(focused
+    || (inputRef && inputRef.value)
+    || !!v
+    || !!dv
+    || !!actualValue
+    || shrink
+    || isSelect
+    || placeholder
+    || InputPropsCheck.startAdornment
+    || InputPropsCheck.endAdornment)
+
+  return (
+    <IC
+      {...props}
+      inputRef={inputRef}
+      select={select}
+      options={options}
+      placeholder={isSelect ? '' : placeholder}
+      type={(isSensitive && !focused) ? 'password' : type}
+      value={actualValue}
+      defaultValue={actualValue ? undefined : dv}
+      onChange={isSelect ? (oc || ob) : oc}
+      onBlur={isSelect ? wrapSensitiveBlur() : ob}
+      onFocus={of}
+      InputProps={InputProps}
+      InputLabelProps={
+        {
+          shrink: shrinkInputLabelProps,
+          ...InputLabelProps,
+        }
+      }
+    >
+      {selectOptions}
+    </IC>
+  )
 }
 
-@control
-export default class MUIText extends BaseMUIText {}
+export default control(BaseMUIText)

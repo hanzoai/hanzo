@@ -1,7 +1,9 @@
 import { signs } from '@hanzo/utils'
+
+import React from 'react'
 import NF from 'react-number-format'
 
-export const CreateCurrencyFormat = (currency) => (
+export const CreateCurrencyFormat = (currency, opts) => (
   (props) => {
     const {
       inputRef,
@@ -15,7 +17,10 @@ export const CreateCurrencyFormat = (currency) => (
     return (
       <NF
         {...other}
+        {...opts}
+        value={value}
         getInputRef={inputRef}
+        onChange={onChange}
         onBlur={onBlur}
         isNumericString
         prefix={signs[currency || '']}
@@ -24,22 +29,29 @@ export const CreateCurrencyFormat = (currency) => (
   }
 )
 
-export const NumberFormat = (props) => {
-  const {
-    inputRef,
-    onBlur,
-    onChange,
-    onFocus,
-    value,
-    ...other
-  } = props
+export const CreateNumberFormat = (opts) => (
+  (props) => {
+    const {
+      inputRef,
+      onBlur,
+      onChange,
+      onFocus,
+      value,
+      ...other
+    } = props
 
-  return (
-    <NF
-      {...other}
-      getInputRef={inputRef}
-      onBlur={onBlur}
-      isNumericString
-    />
-  )
-}
+    console.log(onChange)
+
+    return (
+      <NF
+        {...other}
+        {...opts}
+        value={value}
+        getInputRef={inputRef}
+        onChange={onChange}
+        onBlur={onBlur}
+        isNumericString
+      />
+    )
+  }
+)

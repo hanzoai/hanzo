@@ -29,13 +29,15 @@
   },
   "scripts": {
     "audit": "node_modules/.bin/source-map-explorer dist/index.umd.js",
-    "prepare": "npm run build",
+    "prepare": "install-peers && npm run build",
     "clean": "rm -rf dist",
     "build": "npm run clean && node_modules/.bin/rollup -c",
     "build:watch": "node_modules/.bin/rollup -c -w",
     "watch": "node_modules/.bin/concurrently 'npm run build:watch' 'node_modules/.bin/serve -l tcp://127.0.0.1'",
     "test": "node_modules/.bin/jest && npm run build",
-    "test:coverage": "node_modules/.bin/jest --collect-coverage"
+    "test:coverage": "node_modules/.bin/jest --collect-coverage",
+    "storybook": "start-storybook -p 6006",
+    "build-storybook": "build-storybook"
   },
   "bugs": {
     "url": "https://github.com/hanzoai/hanzo/issues"
@@ -46,11 +48,17 @@
     "@babel/plugin-proposal-decorators": "7.8.3",
     "@babel/plugin-transform-react-jsx": "7.9.4",
     "@babel/preset-env": "7.9.5",
+    "@storybook/addon-actions": "^5.3.19",
+    "@storybook/addon-links": "^5.3.19",
+    "@storybook/addons": "^5.3.19",
+    "@storybook/react": "^5.3.19",
     "autoprefixer": "9.7.6",
     "babel-core": "7.0.0-bridge.0",
     "babel-jest": "25.4.0",
+    "babel-loader": "^8.1.0",
     "babel-plugin-transform-react-pug": "7.0.1",
     "concurrently": "5.1.0",
+    "install-peers-cli": "^2.2.0",
     "jest": "25.4.0",
     "node-eval": "2.0.0",
     "postcss-assets": "5.0.0",
@@ -82,6 +90,7 @@
   "browserslist": "> 0.25%, not dead",
   "dependencies": {
     "@date-io/moment": "2.6.0",
+    "@hanzo/utils": "^0.0.18",
     "@material-ui/pickers": "3.2.10",
     "classnames": "2.2.6",
     "fast-memoize": "2.5.2",
@@ -89,7 +98,6 @@
     "react-number-format": "4.4.1"
   },
   "peerDependencies": {
-    "@hanzo/utils": "^0.0.16",
     "@material-ui/core": "^4.9.11",
     "moment-timezone": "^0.5.28",
     "react": "^16.13.1",
