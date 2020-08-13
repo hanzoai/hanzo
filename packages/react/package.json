@@ -95,6 +95,7 @@
     "classnames": "2.2.6",
     "fast-memoize": "2.5.2",
     "flag-icon-css": "3.5.0",
+    "raf": "^3.4.1",
     "react-number-format": "4.4.1"
   },
   "peerDependencies": {

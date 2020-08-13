@@ -14,6 +14,7 @@ import React, {
   useState,
 } from 'react'
 
+import raf from 'raf'
 import control from './control'
 
 const SPECIALNIL = '☭'
@@ -233,7 +234,7 @@ export const BaseMUIText = ({
   // update component if value is different than actual value
   useEffect(() => {
     if (v !== actualValue) {
-      requestAnimationFrame(() => setActualValue(v))
+      raf(() => setActualValue(v))
     }
   }, [v])
 

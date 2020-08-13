@@ -10,6 +10,8 @@ import {
   valueOrEvent,
 } from '@hanzo/utils'
 
+import raf from 'raf'
+
 //
 // *** Hanzo Standardized Control Decorator ***
 //
@@ -108,11 +110,11 @@ export default (ControlComponent) => (
       // a value into the system
       // some falsy values of value should not cause an initial update
       if (v != null && v !== '') {
-        requestAnimationFrame(() => {
+        raf(() => {
           ob(v)
         })
       } else if (dv !== undefined) {
-        requestAnimationFrame(() => {
+        raf(() => {
           ob(dv)
         })
       }
