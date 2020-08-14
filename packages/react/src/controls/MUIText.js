@@ -188,10 +188,16 @@ export const BaseMUIText = ({
   }
 
   const [actualValue, setActualValue] = useState(v || dv)
+  const [forceFlag, setForceFlag] = useState()
 
   if (isFunction(oc)) {
     const wssoc = wrapSelectSetter(oc)
     oc = (e) => {
+      if (forceFlag && forceFlag === e.target.value) {
+        setForceFlag(null)
+        return null
+      }
+
       setActualValue(e.target ? e.target.value : e)
       return wssoc(e)
     }
@@ -206,6 +212,11 @@ export const BaseMUIText = ({
         let onChangeTimeoutId = -1
 
         return (ev) => {
+          if (forceFlag && forceFlag === ev.target.value) {
+            setForceFlag(null)
+            return
+          }
+
           setActualValue(ev.target ? ev.target.value : ev)
           if (disableAutoChange) {
             return
@@ -234,7 +245,10 @@ export const BaseMUIText = ({
   // update component if value is different than actual value
   useEffect(() => {
     if (v !== actualValue) {
-      raf(() => setActualValue(v))
+      raf(() => {
+        setForceFlag(v)
+        setActualValue(v)
+      })
     }
   }, [v])
 

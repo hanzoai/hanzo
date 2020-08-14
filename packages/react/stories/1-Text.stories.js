@@ -1,4 +1,4 @@
-import { InputAdornment } from '@material-ui/core'
+import { InputAdornment, Button } from '@material-ui/core'
 import React, { useState } from 'react'
 
 // import { action } from '@storybook/addon-actions'
@@ -23,6 +23,27 @@ export const Basic = () => {
       setValue={setValue}
       error={value ? '' : 'Value Required'}
     />
+  )
+}
+
+export const ForceSetBasic = () => {
+  const [value, setValue] = useState('some text')
+
+  return (
+    <>
+      <MUIText
+        label='Type Some Text'
+        value={value}
+        setValue={setValue}
+        error={value ? '' : 'Value Required'}
+      />
+      <Button onClick={() => {
+        setValue('set1')
+        setTimeout(() => {
+          setValue('set2')
+        }, 200)
+      }}>Click</Button>
+    </>
   )
 }
 
