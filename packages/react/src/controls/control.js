@@ -106,18 +106,18 @@ export default (ControlComponent) => (
       }
       oc = undefined
 
-      // if we are not using the getValue/setValue api, then we must load
-      // a value into the system
-      // some falsy values of value should not cause an initial update
-      if (v != null && v !== '') {
-        raf(() => {
-          ob(v)
-        })
-      } else if (dv !== undefined) {
-        raf(() => {
-          ob(dv)
-        })
-      }
+      // // if we are not using the getValue/setValue api, then we must load
+      // // a value into the system
+      // // some falsy values of value should not cause an initial update
+      // if (v != null && v !== '') {
+      //   raf(() => {
+      //     ob(v)
+      //   })
+      // } else if (dv !== undefined) {
+      //   raf(() => {
+      //     ob(dv)
+      //   })
+      // }
     }
 
     // error must be a string

@@ -40,8 +40,6 @@ export const CreateNumberFormat = (opts) => (
       ...other
     } = props
 
-    console.log(onChange)
-
     return (
       <NF
         {...other}

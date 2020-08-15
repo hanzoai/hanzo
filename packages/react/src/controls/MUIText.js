@@ -9,7 +9,6 @@ import {
 
 import React, {
   useEffect,
-  useMemo,
   useRef,
   useState,
 } from 'react'
@@ -18,6 +17,8 @@ import raf from 'raf'
 import control from './control'
 
 const SPECIALNIL = '☭'
+
+const onChangeTimeoutIds = {}
 
 //
 // *** Hanzo Standardized Material UI Input ***
@@ -63,6 +64,7 @@ const wrapSelectSetter = (setter) => (
 )
 
 export const BaseMUIText = ({
+  id,
   options = [],
   value,
   defaultValue,
@@ -88,7 +90,6 @@ export const BaseMUIText = ({
   const wrapSensitiveBlur = (ob) => (
     (e) => {
       setFocused(false)
-      console.log('what')
 
       if (isFunction(ob)) {
         ob(e)
@@ -188,16 +189,10 @@ export const BaseMUIText = ({
   }
 
   const [actualValue, setActualValue] = useState(v || dv)
-  const [forceFlag, setForceFlag] = useState()
 
   if (isFunction(oc)) {
     const wssoc = wrapSelectSetter(oc)
     oc = (e) => {
-      if (forceFlag && forceFlag === e.target.value) {
-        setForceFlag(null)
-        return null
-      }
-
       setActualValue(e.target ? e.target.value : e)
       return wssoc(e)
     }
@@ -208,37 +203,28 @@ export const BaseMUIText = ({
     ob = wrappedOb
 
     if (!isFunction(oc)) {
-      oc = useMemo(() => {
-        let onChangeTimeoutId = -1
+      oc = (ev) => {
+        setActualValue(ev.target ? ev.target.value : ev)
+        if (disableAutoChange) {
+          return
+        }
 
-        return (ev) => {
-          if (forceFlag && forceFlag === ev.target.value) {
-            setForceFlag(null)
-            return
-          }
+        clearTimeout(onChangeTimeoutIds[id])
 
-          setActualValue(ev.target ? ev.target.value : ev)
-          if (disableAutoChange) {
-            return
-          }
+        const { target } = ev
 
-          clearTimeout(onChangeTimeoutId)
-
-          const { target } = ev
-
-          if (isSelect) {
+        if (isSelect) {
+          wrappedOb({
+            target,
+          })
+        } else {
+          onChangeTimeoutIds[id] = setTimeout(() => {
             wrappedOb({
               target,
             })
-          } else {
-            onChangeTimeoutId = setTimeout(() => {
-              wrappedOb({
-                target,
-              })
-            }, 500)
-          }
+          }, 500)
         }
-      }, [onBlur])
+      }
     }
   }
 
@@ -246,7 +232,7 @@ export const BaseMUIText = ({
   useEffect(() => {
     if (v !== actualValue) {
       raf(() => {
-        setForceFlag(v)
+        clearTimeout(onChangeTimeoutIds[id])
         setActualValue(v)
       })
     }

@@ -34,14 +34,18 @@ export const ForceSetBasic = () => {
       <MUIText
         label='Type Some Text'
         value={value}
-        setValue={setValue}
+        setValue={(v) => {
+          setTimeout(() => {
+            setValue(v)
+          }, 100)
+        }}
         error={value ? '' : 'Value Required'}
       />
       <Button onClick={() => {
         setValue('set1')
         setTimeout(() => {
           setValue('set2')
-        }, 200)
+        }, 50)
       }}>Click</Button>
     </>
   )
